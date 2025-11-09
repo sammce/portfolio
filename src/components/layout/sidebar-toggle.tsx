@@ -18,7 +18,7 @@ export function SidebarToggle() {
       <TooltipTrigger asChild>
         <SidebarTrigger
           className="left-6 p-4 top-4 fixed"
-          variant={showInsetExpanded ? "ghost" : "outline-bright"}
+          variant={showInsetExpanded ? "ghost" : "glass"}
         />
       </TooltipTrigger>
       <TooltipContent className="flex items-center space-x-1">

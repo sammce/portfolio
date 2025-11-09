@@ -37,7 +37,10 @@ export function TechStackBadge({
       <TooltipTrigger
         className={cn(
           "flex items-center space-x-1.5 hover:bg-primary/15 bg-card px-2.5 py-1.5 rounded-full border border-input cursor-pointer transition-colors",
-          { "bg-primary/20 dark:bg-primary/20 border-primary": isInFilter },
+          {
+            "bg-primary/20 dark:bg-primary/20 border-primary shadow-md shadow-primary/15":
+              isInFilter,
+          },
         )}
         onClick={handleClick}
       >

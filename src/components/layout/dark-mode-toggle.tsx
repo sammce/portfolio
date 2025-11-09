@@ -87,11 +87,11 @@ export function DarkModeToggle() {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            variant={showInsetExpanded ? "ghost" : "outline-bright"}
+            variant={showInsetExpanded ? "ghost" : "glass"}
             size="icon"
             ref={buttonRef}
             onClick={toggleTheme}
-            className="z-40 fixed top-2.5 right-5 size-8"
+            className="z-40 fixed top-4 md:top-2.5 right-5 size-8"
           >
             <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
             <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />

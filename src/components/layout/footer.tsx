@@ -24,7 +24,7 @@ export const Footer = () => {
       initial={{ y: 0 }}
       style={{ y: translateY }}
       className={cn(
-        "bg-footer min-h-footer flex items-center justify-center text-muted-foreground fixed bottom-0 left-0 right-0 z-0",
+        "bg-footer min-h-footer flex items-center justify-center text-muted-foreground fixed bottom-0 left-0 right-0",
       )}
     >
       &copy; Sam McElligott, {currentYear}

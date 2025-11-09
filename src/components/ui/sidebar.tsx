@@ -115,8 +115,8 @@ function SidebarProvider({
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? "expanded" : "collapsed";
 
-  const showInsetExpanded = state === "expanded" && !isMobile;
-  const showInsetCollapsed = state === "collapsed" && !isMobile;
+  const showInsetExpanded = open && !isMobile;
+  const showInsetCollapsed = !open && !isMobile;
 
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
@@ -156,7 +156,7 @@ function SidebarProvider({
             } as React.CSSProperties
           }
           className={cn(
-            "group/sidebar-wrapper has-data-[variant=inset]:bg-linear-to-b from-background to-20% to-footer flex min-h-svh w-full",
+            "group/sidebar-wrapper has-data-[variant=inset]:bg-linear-to-b from-background to-footer-noise flex min-h-svh w-full",
             className,
           )}
           {...props}
