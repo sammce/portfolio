@@ -22,7 +22,7 @@ const linksOrdered = sidebarItems.map((item) => item.title.toLowerCase());
 
 const ITEM_HEIGHT = 52;
 const HIGHLIGHT_HEIGHT = 40;
-const TOTAL_HEIGHT = linksOrdered.length * 47;
+const TOTAL_HEIGHT = linksOrdered.length * 47; // Weird number because of padding/margin between items
 
 function LinkViewHighlight({ inView }: { inView: string }) {
   const offsetMultiplier = linksOrdered.indexOf(inView) * ITEM_HEIGHT;
@@ -102,7 +102,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    className="h-10 px-4 transition-colors hover:bg-accent/70 focus-visible:bg-accent/60 active:bg-accent/50"
+                    className="h-10 px-4 transition-colors hover:bg-primary/25 dark:hover:bg-primary/15 focus-visible:bg-primary/25 dark:focus-visible:bg-primary/15 active:bg-primary/15 dark:active:bg-primary/5"
                     // Remove the hash from the href
                     onClick={handleClick(item.href.slice(1, item.href.length))}
                   >

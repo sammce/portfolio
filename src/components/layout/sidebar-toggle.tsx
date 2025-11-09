@@ -17,7 +17,7 @@ export function SidebarToggle() {
     <Tooltip>
       <TooltipTrigger asChild>
         <SidebarTrigger
-          className="left-6 p-4 top-4 fixed"
+          className="left-6 p-4 top-4 fixed z-50"
           variant={showInsetExpanded ? "ghost" : "glass"}
         />
       </TooltipTrigger>
