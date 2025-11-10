@@ -90,10 +90,9 @@ export function AppSidebar() {
     <Sidebar variant="inset" className="p-0">
       <SidebarHeader className="w-full flex items-center justify-center overflow-hidden mt-1.5">
         <Link href="/">
-          <motion.h1 className="text-2xl tracking-tight font-semibold">
+          <motion.h1 className="text-2xl tracking-tight font-semibold text-primary">
             {"{"}
-            sammce
-            <span className="text-primary">.dev</span>
+            <span className="text-foreground">sammce</span>
             {"}"}
           </motion.h1>
         </Link>
