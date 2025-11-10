@@ -74,6 +74,7 @@ function SidebarProvider({
   // We use openProp and setOpenProp for control from outside the component.
   const [_open, _setOpen] = React.useState(defaultOpen);
   const open = openProp ?? _open;
+
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === "function" ? value(open) : value;
@@ -88,6 +89,19 @@ function SidebarProvider({
     },
     [setOpenProp, open],
   );
+
+  React.useLayoutEffect(() => {
+    const sidebarCookie = document.cookie.match(
+      new RegExp(`(?:^|; )${SIDEBAR_COOKIE_NAME}=([^;]*)`),
+    );
+
+    if (!sidebarCookie || sidebarCookie.length === 0) {
+      setOpen(true);
+      return;
+    }
+
+    setOpen(sidebarCookie[1] === "true");
+  }, [setOpen]);
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
@@ -180,6 +194,13 @@ function Sidebar({
   collapsible?: "offcanvas" | "icon" | "none";
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const [didMount, setDidMount] = React.useState(false);
+
+  const durationClass = didMount ? "duration-200" : "duration-0";
+
+  React.useEffect(() => {
+    setDidMount(true);
+  }, []);
 
   if (collapsible === "none") {
     return (
@@ -234,12 +255,13 @@ function Sidebar({
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-out",
+          "relative w-(--sidebar-width) bg-transparent transition-[width] ease-out",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
+          durationClass,
         )}
       />
       <div
@@ -253,6 +275,7 @@ function Sidebar({
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          durationClass,
           className,
         )}
         {...props}

@@ -14,6 +14,7 @@ import { MainWrapper } from "@/components/layout/main-wrapper";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { SidebarLinksProvider } from "@/context/sidebar-links";
 import { AsciiArt } from "@/components/atoms/ascii-art";
+import { Suspense } from "react";
 
 const fontSans = Geist({
   variable: "--sammce-font-sans",
@@ -36,11 +37,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const sidebarCookie = cookieStore.get("sidebar_state");
-  const defaultOpen =
-    sidebarCookie === undefined || sidebarCookie.value === "true";
-
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
@@ -48,18 +44,20 @@ export default async function RootLayout({
       >
         <AsciiArt />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SidebarProvider defaultOpen={defaultOpen}>
+          <SidebarProvider>
             <SidebarLinksProvider>
-              <TechFilterProvider>
-                <AppSidebar />
-                <Header />
-                <MainWrapper>
-                  <SidebarToggle />
-                  {children}
-                </MainWrapper>
-                <Footer />
-                <ScrollToTop />
-              </TechFilterProvider>
+              <Suspense>
+                <TechFilterProvider>
+                  <AppSidebar />
+                  <Header />
+                  <MainWrapper>
+                    <SidebarToggle />
+                    {children}
+                  </MainWrapper>
+                  <Footer />
+                  <ScrollToTop />
+                </TechFilterProvider>
+              </Suspense>
             </SidebarLinksProvider>
           </SidebarProvider>
         </ThemeProvider>
@@ -70,7 +68,8 @@ export default async function RootLayout({
 
 export const metadata: Metadata = {
   title: "Sam McElligott",
-  description: "My software engineering portfolio. ",
+  description:
+    "My software engineering portfolio. Projects, work experience and tech stack.",
   icons: {
     icon: [
       {
