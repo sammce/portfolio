@@ -16,7 +16,7 @@ import {
 import { motion, useAnimation, useScroll } from "motion/react";
 import Link from "next/link";
 import { sidebarItems, useSidebarLinks } from "@/context/sidebar-links";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const linksOrdered = sidebarItems.map((item) => item.title.toLowerCase());
 
@@ -28,27 +28,33 @@ function LinkViewHighlight({ inView }: { inView: string }) {
   const offsetMultiplier = linksOrdered.indexOf(inView) * ITEM_HEIGHT;
   const { scrollY } = useScroll();
   const controls = useAnimation();
+  const didMount = useRef(false);
 
   useEffect(() => {
     const isScrollingUp = scrollY.get() < (scrollY.getPrevious() ?? 0);
 
+    const delay = didMount.current ? 0.1 : 0;
+    const duration = didMount.current ? 0.15 : 0;
+
     controls.start({
       bottom: TOTAL_HEIGHT - (offsetMultiplier + HIGHLIGHT_HEIGHT),
       transition: {
-        duration: 0.15,
+        duration,
         ease: "easeOut",
-        delay: isScrollingUp ? 0.1 : 0,
+        delay: isScrollingUp ? delay : 0,
       },
     });
 
     controls.start({
       top: offsetMultiplier,
       transition: {
-        duration: 0.15,
+        duration,
         ease: "easeOut",
-        delay: isScrollingUp ? 0 : 0.1,
+        delay: isScrollingUp ? 0 : delay,
       },
     });
+
+    didMount.current = true;
 
     return () => {
       controls.stop();
@@ -60,7 +66,7 @@ function LinkViewHighlight({ inView }: { inView: string }) {
       className="absolute top-0 left-0 right-0 bg-primary/20 rounded-lg"
       initial={{
         top: offsetMultiplier,
-        bottom: TOTAL_HEIGHT - offsetMultiplier,
+        bottom: TOTAL_HEIGHT - (offsetMultiplier + HIGHLIGHT_HEIGHT),
       }}
       animate={controls}
       transition={{ duration: 0.15 }}
