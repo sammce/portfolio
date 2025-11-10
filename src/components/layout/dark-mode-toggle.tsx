@@ -90,6 +90,7 @@ export function DarkModeToggle() {
             variant={showInsetExpanded ? "ghost" : "glass"}
             size="icon"
             ref={buttonRef}
+            disabled={false}
             onClick={toggleTheme}
             className="z-40 fixed top-4 md:top-2.5 right-5 size-8"
           >

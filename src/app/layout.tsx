@@ -23,6 +23,7 @@ const fontSans = Geist({
 const fontCode = Google_Sans_Code({
   variable: "--sammce-font-code",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const fontMono = Geist_Mono({
