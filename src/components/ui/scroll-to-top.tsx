@@ -31,9 +31,9 @@ export function ScrollToTop() {
   const cy = height / 2;
 
   scrollYProgress.on("change", (latest) => {
-    if (latest > 0.2) {
+    if (latest > 0.2 && !visible) {
       setVisible(true);
-    } else {
+    } else if (latest <= 0.2 && visible) {
       setVisible(false);
     }
   });
@@ -42,7 +42,8 @@ export function ScrollToTop() {
     <motion.div
       initial={{ opacity: 0, scale: 0.85 }}
       animate={visible ? { opacity: 1, scale: 1 } : {}}
-      className="fixed bottom-14 right-14 z-10 flex items-center group justify-center hover:scale-110 active:scale-95 transition-transform cursor-pointer bg-background-noise/50 backdrop-blur-sm rounded-full"
+      whileHover={{ scale: 1.1 }}
+      className="fixed bottom-14 right-14 z-10 flex items-center group justify-center active:scale-95 cursor-pointer bg-background-noise/50 backdrop-blur-sm rounded-full"
       style={{ width, height }}
     >
       <svg

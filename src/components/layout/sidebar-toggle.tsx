@@ -21,7 +21,7 @@ export function SidebarToggle() {
           variant={showInsetExpanded ? "ghost" : "glass"}
         />
       </TooltipTrigger>
-      <TooltipContent className="flex items-center space-x-1">
+      <TooltipContent className="items-center space-x-1">
         <p>Toggle sidebar</p>
         <KbdGroup>
           <Kbd>{platform === "macOS" ? "⌘" : "^"}</Kbd>

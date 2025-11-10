@@ -55,6 +55,7 @@ export function About() {
           iconSize={16}
           tooltipNoun="email"
           href="sammcelligott@outlook.com"
+          noPrefix
         >
           <ContactLink
             href="mailto:sammcelligott@outlook.com"
