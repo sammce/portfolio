@@ -13,6 +13,7 @@ import type { Viewport } from "next";
 import { MainWrapper } from "@/components/layout/main-wrapper";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { SidebarLinksProvider } from "@/context/sidebar-links";
+import { AsciiArt } from "@/components/atoms/ascii-art";
 
 const fontSans = Geist({
   variable: "--sammce-font-sans",
@@ -42,6 +43,7 @@ export default async function RootLayout({
       <body
         className={`${fontSans.variable} ${fontMono.variable} ${fontCode.variable} antialiased`}
       >
+        <AsciiArt />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider defaultOpen={defaultOpen}>
             <SidebarLinksProvider>
