@@ -12,7 +12,7 @@ export function AsciiArt() {
       "(prefers-color-scheme: dark)",
     ).matches;
 
-    console.log(escapedArt, `color: ${prefersDark ? "#a2ffc1" : "#0ca961"} `);
+    console.log(escapedArt, `color: ${prefersDark ? "#00b265" : "#007c45"} `);
   }, []);
 
   return null;

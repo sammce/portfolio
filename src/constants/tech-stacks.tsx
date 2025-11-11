@@ -18,59 +18,37 @@ import LinuxOriginal from "devicons-react/icons/LinuxOriginal";
 import DockerOriginal from "devicons-react/icons/DockerOriginal";
 import BashOriginal from "devicons-react/icons/BashOriginal";
 import FlaskOriginal from "devicons-react/icons/FlaskOriginal";
+import PytestOriginal from "devicons-react/icons/PytestOriginal";
+import GitlabOriginal from "devicons-react/icons/GitlabOriginal";
+import PandasOriginal from "devicons-react/icons/PandasOriginal";
+import HtmxOriginal from "devicons-react/icons/HtmxOriginal";
+import NginxOriginal from "devicons-react/icons/NginxOriginal";
+import TerraformOriginal from "devicons-react/icons/TerraformOriginal";
 
 export const technologies = {
-  HTML: {
-    icon: Html5Original,
-  },
-  CSS: {
-    icon: Css3Original,
-  },
-  TypeScript: {
-    icon: TypescriptOriginal,
-  },
-  Bash: {
-    icon: BashOriginal,
-  },
-  "C-Lang": {
-    icon: COriginal,
-  },
-  Python: {
-    icon: PythonOriginal,
-  },
-  Lua: {
-    icon: LuaOriginal,
-  },
-  React: {
-    icon: ReactOriginal,
-  },
-  NextJS: {
-    icon: NextjsOriginal,
-  },
-  TailwindCSS: {
-    icon: TailwindcssOriginal,
-  },
-  Django: {
-    icon: DjangoPlain,
-  },
-  "Django REST": {
-    icon: DjangorestOriginal,
-  },
-  PostgreSQL: {
-    icon: PostgresqlOriginal,
-  },
-  AWS: {
-    icon: AmazonwebservicesOriginalWordmark,
-  },
-  Linux: {
-    icon: LinuxOriginal,
-  },
-  Docker: {
-    icon: DockerOriginal,
-  },
-  Flask: {
-    icon: FlaskOriginal,
-  },
+  HTML: Html5Original,
+  CSS: Css3Original,
+  TypeScript: TypescriptOriginal,
+  Bash: BashOriginal,
+  "C-Lang": COriginal,
+  Python: PythonOriginal,
+  Lua: LuaOriginal,
+  React: ReactOriginal,
+  NextJS: NextjsOriginal,
+  TailwindCSS: TailwindcssOriginal,
+  Django: DjangoPlain,
+  "Django-Rest": DjangorestOriginal,
+  PostgreSQL: PostgresqlOriginal,
+  AWS: AmazonwebservicesOriginalWordmark,
+  Linux: LinuxOriginal,
+  Docker: DockerOriginal,
+  Flask: FlaskOriginal,
+  Pytest: PytestOriginal,
+  "Gitlab-CI": GitlabOriginal,
+  Pandas: PandasOriginal,
+  HTMX: HtmxOriginal,
+  Nginx: NginxOriginal,
+  Terraform: TerraformOriginal,
 };
 
 export type Technology = keyof typeof technologies;

@@ -106,6 +106,7 @@ export function AppSidebar() {
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
+                    tabIndex={0}
                     asChild
                     className="h-10 px-4 transition-colors hover:bg-primary/25 dark:hover:bg-primary/15 focus-visible:bg-primary/25 dark:focus-visible:bg-primary/15 active:bg-primary/15 dark:active:bg-primary/5"
                     // Remove the hash from the href

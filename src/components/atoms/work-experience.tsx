@@ -1,106 +1,111 @@
 "use client";
 
-import { Technology } from "@/constants/tech-stacks";
 import { LinkableHeading } from "../ui/linkable-heading";
 import { Separator } from "../ui/separator";
 import { Section } from "../ui/section";
-import { useRef } from "react";
-
-type Job = {
-  title: string;
-  company: string;
-  location: string;
-  startDate: Date;
-  endDate: Date;
-  tags?: string[];
-  href: string;
-  technologies: Technology[];
-};
-
-const jobs: Job[] = [
-  {
-    title: "Software Engineering Intern",
-    company: "Nuritas",
-    location: "Dublin, Ireland",
-    startDate: new Date("2025-04-07"),
-    endDate: new Date("2025-08-29"),
-    tags: ["Full-time"],
-    href: "/work/nuritas",
-    technologies: [
-      "Python",
-      "Bash",
-      "HTML",
-      "CSS",
-      "TypeScript",
-      "React",
-      "NextJS",
-      "Flask",
-      "AWS",
-      "Docker",
-    ],
-  },
-  {
-    title: "Teaching Assistant",
-    company: "DCU",
-    location: "Dublin, Ireland",
-    startDate: new Date("2022-09-01"),
-    endDate: new Date("2023-04-15"),
-    tags: ["Part-time"],
-    href: "/work/dcu",
-    technologies: ["Python", "Linux", "Bash"],
-  },
-];
-
-const CALC_MONTHS = 1000 * 60 * 60 * 24 * 30;
-const CALC_YEARS = 1000 * 60 * 60 * 24 * 365;
-
-function calculateDuration(startDate: string, endDate: string) {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = end.getTime() - start.getTime();
-  const years = Math.floor(duration / CALC_YEARS);
-  const leftoverMonths = Math.ceil((duration % CALC_YEARS) / CALC_MONTHS);
-
-  if (years === 0) {
-    return `${leftoverMonths} months`;
-  }
-
-  return `${years} years, ${leftoverMonths} months`;
-}
+import { Fragment, useMemo } from "react";
+import { ExternalLink } from "../ui/external-link";
+import { useTechFilter } from "@/hooks/use-tech-filter";
+import { AnimatePresence, motion } from "motion/react";
+import { TechStackBadge } from "../ui/tech-stack-badge";
+import { cn } from "@/lib/utils";
+import { calculateDuration, jobs, type Job } from "@/constants/jobs";
 
 function JobItem({ job }: { job: Job }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-1">
-        <span className="text-muted-foreground">{job.title}</span>
-        <span className="text-muted-foreground">{job.company}</span>
-        <span className="text-muted-foreground">{job.location}</span>
+    <div className="flex flex-col gap-2 mb-4 mt-3">
+      <div className="flex items-center justify-between gap-1">
+        <p className="text-lg">
+          <span className="font-bold">{job.title} @ </span>
+          <ExternalLink
+            href={job.href}
+            className="font-normal ml-1 inline-block"
+          >
+            {job.company}
+          </ExternalLink>
+        </p>
+        <p className="text-muted-foreground">
+          {calculateDuration(
+            job.startDate.toDateString(),
+            job.endDate.toDateString(),
+          )}
+        </p>
       </div>
-      <span className="text-muted-foreground">
-        {calculateDuration(
-          job.startDate.toDateString(),
-          job.endDate.toDateString(),
-        )}
-      </span>
+      <p className="text-muted-foreground mb-6">{job.location}</p>
+      {job.projects.map((project) => (
+        <Fragment key={project.name}>
+          <div
+            className={cn("flex items-center gap-2 mt-4", {
+              "mb-3": project.technologies,
+            })}
+          >
+            <p className="font-bold text-base mr-4">{project.name}</p>
+            {project.technologies?.map((tech) => (
+              <TechStackBadge technology={tech} key={tech} small />
+            ))}
+          </div>
+          <ul className="list-disc pl-4" key={project.name}>
+            {project.responsibilities.map((responsibility, index) => (
+              <li key={index} className="mb-5">
+                <p className="my-2">{responsibility.description}</p>
+                <div className="flex items-center gap-2">
+                  {responsibility.technologies?.map((tech) => (
+                    <TechStackBadge technology={tech} key={tech} small />
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Fragment>
+      ))}
     </div>
   );
 }
 
 export function WorkExperience() {
-  const ref = useRef<HTMLDivElement>(null);
+  const { techFilter } = useTechFilter();
+
+  // worst case n^3 but it's fine, lists are all < 15 items
+  const filteredJobs = useMemo(() => {
+    return jobs.filter((job) => {
+      // If no filter, return true for all jobs
+      if (techFilter.length === 0) {
+        return true;
+      }
+
+      // Collect all nested technologies from the job
+      const joinedTechs = [
+        ...job.technologies,
+        ...job.projects.flatMap((p) => p.technologies),
+      ];
+
+      // If any of the technologies are in the filter, return true
+      return joinedTechs.some((tech) => tech && techFilter.includes(tech));
+    });
+  }, [techFilter]);
+
   return (
-    <Section
-      className="w-full flex flex-col gap-2 mb-12"
-      id="experience"
-      viewRef={ref}
-    >
-      <LinkableHeading href="#experience" ref={ref}>
-        Experience
-      </LinkableHeading>
+    <Section className="w-full flex flex-col gap-2 mb-12" id="experience">
+      <LinkableHeading href="#experience">Experience</LinkableHeading>
       <Separator className="mb-1" />
-      {jobs.map((job) => (
-        <JobItem key={job.title} job={job} />
-      ))}
+      <AnimatePresence>
+        {filteredJobs.map((job, index) => (
+          <motion.div
+            className="origin-bottom"
+            key={job.title}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: { duration: 0.2 },
+            }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+          >
+            <JobItem key={job.title} job={job} />
+            {index < jobs.length - 1 && <Separator className="my-2" />}
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </Section>
   );
 }

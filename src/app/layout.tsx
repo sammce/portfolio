@@ -8,7 +8,6 @@ import { Footer } from "@/components/layout/footer";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { SidebarToggle } from "@/components/layout/sidebar-toggle";
-import { cookies } from "next/headers";
 import type { Viewport } from "next";
 import { MainWrapper } from "@/components/layout/main-wrapper";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";

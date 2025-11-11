@@ -1,6 +1,3 @@
-"use client";
-
-import { useRef } from "react";
 import { LinkableHeading } from "../ui/linkable-heading";
 import { Section } from "../ui/section";
 import { Separator } from "../ui/separator";
@@ -19,12 +16,9 @@ const frameworks: Technology[] = ["React", "NextJS", "Django", "TailwindCSS"];
 const infra: Technology[] = ["PostgreSQL", "Docker", "AWS", "Linux"];
 
 export function TechStack() {
-  const viewRef = useRef<HTMLHeadingElement>(null);
   return (
-    <Section id="technologies" viewRef={viewRef}>
-      <LinkableHeading href="#technologies" ref={viewRef}>
-        Technologies
-      </LinkableHeading>
+    <Section id="technologies">
+      <LinkableHeading href="#technologies">Technologies</LinkableHeading>
       <Separator className="mb-1" />
       <p className="text-muted-foreground">
         The tools I&apos;m <b>fluent</b> in, and have used to ship production

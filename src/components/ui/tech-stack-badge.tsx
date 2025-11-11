@@ -11,14 +11,18 @@ export type TechStackBadgeProps = {
   technology: Technology;
   iconSize?: number;
   showFilterTooltip?: boolean;
+  small?: boolean;
 };
 
 export function TechStackBadge({
   technology,
   iconSize = 20,
   showFilterTooltip = true,
+  small = false,
 }: TechStackBadgeProps) {
-  const Icon = technologies[technology].icon;
+  const Icon = technologies[technology];
+
+  const normalisedIconSize = iconSize - (small ? 4 : 0);
 
   const { techFilter, addTechToFilter, removeTechFromFilter } = useTechFilter();
 
@@ -44,8 +48,12 @@ export function TechStackBadge({
         )}
         onClick={handleClick}
       >
-        <Icon size={iconSize} />
-        <span className="text-sm tracking-tight font-semibold dark:font-bold">
+        <Icon size={normalisedIconSize} />
+        <span
+          className={cn("text-sm tracking-tight font-semibold dark:font-bold", {
+            "text-xs": small,
+          })}
+        >
           {technology}
         </span>
       </TooltipTrigger>

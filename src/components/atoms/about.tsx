@@ -1,32 +1,9 @@
 import { Section } from "../ui/section";
 import { GithubOriginal, LinkedinPlain } from "devicons-react";
-import { Mail, ExternalLink } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { LinkableHeading } from "../ui/linkable-heading";
-
-function ContactLink({
-  href,
-  children,
-  showExternalLink = true,
-}: {
-  href: string;
-  children: React.ReactNode;
-  showExternalLink?: boolean;
-}) {
-  return (
-    <a
-      className="underline text-primary flex items-center justify-start gap-4 w-max basis-auto underline-offset-2"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span className="flex items-center gap-2">
-        {children}
-        {showExternalLink && <ExternalLink size={16} />}
-      </span>
-    </a>
-  );
-}
+import { ExternalLink } from "../ui/external-link";
 
 export function About() {
   return (
@@ -57,7 +34,7 @@ export function About() {
           href="sammcelligott@outlook.com"
           noPrefix
         >
-          <ContactLink
+          <ExternalLink
             href="mailto:sammcelligott@outlook.com"
             showExternalLink={false}
           >
@@ -65,19 +42,19 @@ export function About() {
             <span className="text-sm font-normal font-code">
               sammcelligott@outlook.com
             </span>
-          </ContactLink>
+          </ExternalLink>
         </LinkableHeading>
-        <ContactLink href="https://www.linkedin.com/in/sammce/">
+        <ExternalLink href="https://www.linkedin.com/in/sammce/">
           <LinkedinPlain size={18} className="mr-1" />
           LinkedIn
-        </ContactLink>
-        <ContactLink href="https://github.com/sammce">
+        </ExternalLink>
+        <ExternalLink href="https://github.com/sammce">
           <GithubOriginal
             size={18}
             className="dark:bg-foreground dark:rounded-sm dark:p-0.5 mr-1"
           />
           GitHub
-        </ContactLink>
+        </ExternalLink>
       </div>
     </Section>
   );

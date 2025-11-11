@@ -9,13 +9,12 @@ type SectionProps = {
   children: React.ReactNode;
   className?: string;
   id: string;
-  viewRef?: React.RefObject<HTMLElement | null>;
 };
 
-export function Section({ children, className, id, viewRef }: SectionProps) {
+export function Section({ children, className, id }: SectionProps) {
   const { lastNavigation, setInView } = useSidebarLinks();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(viewRef || ref, { margin: "-20% 0px -75% 0px" });
+  const inView = useInView(ref, { margin: "-25% 0px -70% 0px" });
 
   const wasLastNavigation = lastNavigation === id;
 
@@ -46,7 +45,7 @@ export function Section({ children, className, id, viewRef }: SectionProps) {
   return (
     <div
       className={cn(
-        "w-full flex flex-col gap-2 scroll-mt-48 mb-8 flashable",
+        "w-full flex flex-col gap-2 scroll-mt-14 mb-8 flashable",
         className,
       )}
       ref={ref}

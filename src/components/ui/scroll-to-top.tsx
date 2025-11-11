@@ -21,7 +21,7 @@ export function circlePath(cx: number, cy: number, r: number): string {
 }
 
 export function ScrollToTop() {
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress, scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
   const height = 50;
   const width = 50;
@@ -30,10 +30,10 @@ export function ScrollToTop() {
   const cx = width / 2;
   const cy = height / 2;
 
-  scrollYProgress.on("change", (latest) => {
-    if (latest > 0.2 && !visible) {
+  scrollY.on("change", (latest) => {
+    if (latest > 100 && !visible) {
       setVisible(true);
-    } else if (latest <= 0.2 && visible) {
+    } else if (latest <= 100 && visible) {
       setVisible(false);
     }
   });
