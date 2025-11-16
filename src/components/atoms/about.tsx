@@ -10,6 +10,7 @@ export function About() {
     <Section
       className="items-start justify-center gap-1 mt-20 scroll-mt-32 mb-20"
       id="about"
+      flash
     >
       <h1 className="text-4xl font-bold tracking-tight">Sam McElligott</h1>
       <div className="flex flex-col 2xl:flex-row items-start 2xl:items-center gap-2 2xl:gap-4">
@@ -23,7 +24,12 @@ export function About() {
         </p>
       </div>
       <p className="text-muted-foreground mt-2">
-        When I spot problems, I build solutions you can test, scale and measure
+        From age 12, I&apos;ve been developing full-stack web applications and
+        developer tooling.
+        <br />
+        <br />
+        Currently focusing on infrastructure &amp; deployment automation, CI/CD
+        and ML/AI.
       </p>
       <Separator className="my-2" />
       <h3 className="font-bold text-base">Dublin, Ireland</h3>
@@ -51,7 +57,7 @@ export function About() {
         <ExternalLink href="https://github.com/sammce">
           <GithubOriginal
             size={18}
-            className="dark:bg-foreground dark:rounded-sm dark:p-0.5 mr-1"
+            className="dark:bg-foreground dark:invert-100 mr-1"
           />
           GitHub
         </ExternalLink>

@@ -24,24 +24,24 @@ import PandasOriginal from "devicons-react/icons/PandasOriginal";
 import HtmxOriginal from "devicons-react/icons/HtmxOriginal";
 import NginxOriginal from "devicons-react/icons/NginxOriginal";
 import TerraformOriginal from "devicons-react/icons/TerraformOriginal";
+import JavascriptOriginal from "devicons-react/icons/JavascriptOriginal";
+import PytorchOriginal from "devicons-react/icons/PytorchOriginal";
 
 export const technologies = {
-  HTML: Html5Original,
-  CSS: Css3Original,
   TypeScript: TypescriptOriginal,
-  Bash: BashOriginal,
-  "C-Lang": COriginal,
+  JavaScript: JavascriptOriginal,
   Python: PythonOriginal,
-  Lua: LuaOriginal,
   React: ReactOriginal,
   NextJS: NextjsOriginal,
+  Bash: BashOriginal,
+  Docker: DockerOriginal,
+  Lua: LuaOriginal,
+  "C-Lang": COriginal,
   TailwindCSS: TailwindcssOriginal,
   Django: DjangoPlain,
-  "Django-Rest": DjangorestOriginal,
   PostgreSQL: PostgresqlOriginal,
   AWS: AmazonwebservicesOriginalWordmark,
   Linux: LinuxOriginal,
-  Docker: DockerOriginal,
   Flask: FlaskOriginal,
   Pytest: PytestOriginal,
   "Gitlab-CI": GitlabOriginal,
@@ -49,6 +49,7 @@ export const technologies = {
   HTMX: HtmxOriginal,
   Nginx: NginxOriginal,
   Terraform: TerraformOriginal,
+  PyTorch: PytorchOriginal,
 };
 
 export type Technology = keyof typeof technologies;

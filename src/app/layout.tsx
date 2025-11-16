@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Google_Sans_Code, Geist } from "next/font/google";
+import { Google_Sans_Code, Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme";
 import { Header } from "@/components/layout/header";
@@ -13,7 +13,6 @@ import { MainWrapper } from "@/components/layout/main-wrapper";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { SidebarLinksProvider } from "@/context/sidebar-links";
 import { AsciiArt } from "@/components/atoms/ascii-art";
-import { Suspense } from "react";
 
 const fontSans = Geist({
   variable: "--sammce-font-sans",
@@ -26,37 +25,28 @@ const fontCode = Google_Sans_Code({
   display: "swap",
 });
 
-const fontMono = Geist_Mono({
-  variable: "--sammce-font-mono",
-  subsets: ["latin"],
-});
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body
-        className={`${fontSans.variable} ${fontMono.variable} ${fontCode.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${fontSans.variable} ${fontCode.variable} antialiased`}>
         <AsciiArt />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
             <SidebarLinksProvider>
-              <Suspense>
-                <TechFilterProvider>
-                  <AppSidebar />
-                  <Header />
-                  <MainWrapper>
-                    <SidebarToggle />
-                    {children}
-                  </MainWrapper>
-                  <Footer />
-                  <ScrollToTop />
-                </TechFilterProvider>
-              </Suspense>
+              <TechFilterProvider>
+                <AppSidebar />
+                <Header />
+                <MainWrapper>
+                  <SidebarToggle />
+                  {children}
+                </MainWrapper>
+                <Footer />
+                <ScrollToTop />
+              </TechFilterProvider>
             </SidebarLinksProvider>
           </SidebarProvider>
         </ThemeProvider>

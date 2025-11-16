@@ -4,20 +4,19 @@ import { Separator } from "../ui/separator";
 import { TechStackBadge } from "../ui/tech-stack-badge";
 import { Technology } from "@/constants/tech-stacks";
 
-const languages: Technology[] = [
-  "HTML",
-  "CSS",
-  "TypeScript",
-  "Python",
-  "Bash",
-  "C-Lang",
+const languages: Technology[] = ["HTML", "CSS", "TypeScript", "Python", "Bash"];
+const frameworks: Technology[] = [
+  "React",
+  "NextJS",
+  "Django",
+  "TailwindCSS",
+  "HTMX",
 ];
-const frameworks: Technology[] = ["React", "NextJS", "Django", "TailwindCSS"];
-const infra: Technology[] = ["PostgreSQL", "Docker", "AWS", "Linux"];
+const infra: Technology[] = ["PostgreSQL", "Docker", "AWS", "Linux", "Nginx"];
 
 export function TechStack() {
   return (
-    <Section id="technologies">
+    <Section id="technologies" flash>
       <LinkableHeading href="#technologies">Technologies</LinkableHeading>
       <Separator className="mb-1" />
       <p className="text-muted-foreground">

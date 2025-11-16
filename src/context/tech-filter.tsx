@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import type { Technology } from "@/constants/tech-stacks";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type TechFilterContextType = {
   techFilter: Technology[];
@@ -23,11 +23,23 @@ export const TechFilterProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [techFilter, setTechFilter] = useState<Technology[]>(
     (searchParams.get("filter")?.split(",") || []) as Technology[],
   );
+
+  useEffect(() => {
+    const paramStr = techFilter.join("%2C");
+
+    if (paramStr.length === 0) {
+      return;
+    }
+
+    router.replace(`${pathname}?filter=${paramStr}`, { scroll: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   const addTechToSearchParams = useCallback(
     (tech: Technology) => {
@@ -39,7 +51,9 @@ export const TechFilterProvider = ({
         currentTech ? `${currentTech},${tech}` : tech,
       );
 
-      router.replace(`?${newSearchParams.toString()}`, { scroll: false });
+      router.replace(`?${newSearchParams.toString()}`, {
+        scroll: false,
+      });
     },
     [searchParams, router],
   );
@@ -58,7 +72,9 @@ export const TechFilterProvider = ({
         newSearchParams.set("filter", filterWithoutTech.join(","));
       }
 
-      router.replace(`?${newSearchParams.toString()}`, { scroll: false });
+      router.replace(`?${newSearchParams.toString()}`, {
+        scroll: false,
+      });
     },
     [searchParams, router],
   );
@@ -76,6 +92,11 @@ export const TechFilterProvider = ({
   };
 
   const resetTechFilter = () => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.delete("filter");
+    router.replace(`${window.location.hash}?${newSearchParams.toString()}`, {
+      scroll: false,
+    });
     setTechFilter([]);
   };
 

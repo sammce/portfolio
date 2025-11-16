@@ -1,3 +1,4 @@
+import { GraduationCap, Laptop } from "lucide-react";
 import type { Technology } from "./tech-stacks";
 
 export type Responsibility = {
@@ -7,6 +8,9 @@ export type Responsibility = {
 
 export type Job = {
   title: string;
+  sidebarTitle: string;
+  sidebarIcon: React.ComponentType<{ className?: string }>;
+  pageHref: string;
   company: string;
   location: string;
   projects: {
@@ -17,7 +21,6 @@ export type Job = {
   startDate: Date;
   endDate: Date;
   href: string;
-  technologies: Technology[];
 };
 
 const CALC_MONTHS = 1000 * 60 * 60 * 24 * 30;
@@ -45,6 +48,9 @@ export function calculateDuration(startDate: string, endDate: string) {
 export const jobs: Job[] = [
   {
     title: "Software Engineering Intern",
+    sidebarTitle: "SWE Intern",
+    sidebarIcon: Laptop,
+    pageHref: "soft-eng-intern",
     company: "Nuritas",
     projects: [
       {
@@ -93,26 +99,18 @@ export const jobs: Job[] = [
     startDate: new Date("2025-04-07"),
     endDate: new Date("2025-08-29"),
     href: "https://www.nuritas.com",
-    technologies: [
-      "Python",
-      "Bash",
-      "HTML",
-      "CSS",
-      "TypeScript",
-      "React",
-      "NextJS",
-      "Flask",
-      "AWS",
-      "Docker",
-    ],
   },
   {
     title: "Teaching Assistant",
+    sidebarTitle: "Teaching Assistant",
+    sidebarIcon: GraduationCap,
+    pageHref: "teaching-assistant",
     company: "DCU",
     location: "Dublin, Ireland",
     projects: [
       {
         name: "ComputeTY Lab Lead",
+        technologies: ["Python"],
         responsibilities: [
           {
             description:
@@ -126,6 +124,7 @@ export const jobs: Job[] = [
       },
       {
         name: "First Year Programming Tutor",
+        technologies: ["Python", "Linux", "Bash"],
         responsibilities: [
           {
             description:
@@ -145,6 +144,5 @@ export const jobs: Job[] = [
     startDate: new Date("2022-04-01"),
     endDate: new Date("2023-04-15"),
     href: "https://www.dcu.ie",
-    technologies: ["Python", "Linux", "Bash"],
   },
 ];

@@ -1,19 +1,18 @@
-"use client";
-
 import { LinkableHeading } from "../ui/linkable-heading";
 import { Separator } from "../ui/separator";
 import { Section } from "../ui/section";
-import { Fragment, useMemo } from "react";
+import { Fragment } from "react";
 import { ExternalLink } from "../ui/external-link";
-import { useTechFilter } from "@/hooks/use-tech-filter";
-import { AnimatePresence, motion } from "motion/react";
 import { TechStackBadge } from "../ui/tech-stack-badge";
 import { cn } from "@/lib/utils";
 import { calculateDuration, jobs, type Job } from "@/constants/jobs";
 
 function JobItem({ job }: { job: Job }) {
   return (
-    <div className="flex flex-col gap-2 mb-4 mt-3">
+    <Section
+      className="flex flex-col gap-2 mb-4 mt-3"
+      id={job.sidebarTitle.toLowerCase()}
+    >
       <div className="flex items-center justify-between gap-1">
         <p className="text-lg">
           <span className="font-bold">{job.title} @ </span>
@@ -58,54 +57,27 @@ function JobItem({ job }: { job: Job }) {
           </ul>
         </Fragment>
       ))}
-    </div>
+    </Section>
   );
 }
 
 export function WorkExperience() {
-  const { techFilter } = useTechFilter();
-
-  // worst case n^3 but it's fine, lists are all < 15 items
-  const filteredJobs = useMemo(() => {
-    return jobs.filter((job) => {
-      // If no filter, return true for all jobs
-      if (techFilter.length === 0) {
-        return true;
-      }
-
-      // Collect all nested technologies from the job
-      const joinedTechs = [
-        ...job.technologies,
-        ...job.projects.flatMap((p) => p.technologies),
-      ];
-
-      // If any of the technologies are in the filter, return true
-      return joinedTechs.some((tech) => tech && techFilter.includes(tech));
-    });
-  }, [techFilter]);
-
   return (
-    <Section className="w-full flex flex-col gap-2 mb-12" id="experience">
-      <LinkableHeading href="#experience">Experience</LinkableHeading>
-      <Separator className="mb-1" />
-      <AnimatePresence>
-        {filteredJobs.map((job, index) => (
-          <motion.div
-            className="origin-bottom"
-            key={job.title}
-            exit={{
-              height: 0,
-              opacity: 0,
-              transition: { duration: 0.2 },
-            }}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-          >
-            <JobItem key={job.title} job={job} />
-            {index < jobs.length - 1 && <Separator className="my-2" />}
-          </motion.div>
-        ))}
-      </AnimatePresence>
-    </Section>
+    <div>
+      <Section
+        className="w-full flex flex-col gap-2 mb-6"
+        id="experience"
+        flash
+      >
+        <LinkableHeading href="#experience">Experience</LinkableHeading>
+        <Separator className="mb-1" />
+      </Section>
+      {jobs.map((job, index) => (
+        <div key={job.title}>
+          <JobItem key={job.title} job={job} />
+          {index < jobs.length - 1 && <Separator className="mt-2 mb-8" />}
+        </div>
+      ))}
+    </div>
   );
 }

@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    turbopackFileSystemCacheForDev: true,
+    scrollRestoration: true,
+  },
 };
 
 const withMDX = createMDX({});
