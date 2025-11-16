@@ -32,7 +32,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${fontSans.variable} ${fontCode.variable} antialiased`}>
         <AsciiArt />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
@@ -61,7 +61,7 @@ export default async function RootLayout({
 export const metadata: Metadata = {
   title: "Sam McElligott",
   description:
-    "My software engineering portfolio. Projects, work experience and tech stack.",
+    "My name's Sam McElligott. I'm a full-stack web developer who can take your products to the next leve. View my projects, work experience and tech stack.",
   icons: {
     icon: [
       {

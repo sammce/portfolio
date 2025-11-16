@@ -59,7 +59,9 @@ export function LinkableHeading({
           onPointerDown={(e) => {
             e.preventDefault();
             navigator.clipboard.writeText(
-              noPrefix ? href : `https://www.sammce.dev${pathname}${href}`,
+              noPrefix
+                ? href
+                : `${process.env.NEXT_PUBLIC_HOST_DOMAIN}${pathname}${href}`,
             );
             handleClick();
           }}

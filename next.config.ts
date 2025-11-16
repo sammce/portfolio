@@ -9,8 +9,15 @@ const nextConfig: NextConfig = {
     turbopackFileSystemCacheForDev: true,
     scrollRestoration: true,
   },
+  images: {
+    remotePatterns: [new URL("https://github.com/sammce/**?raw=true")],
+  },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    rehypePlugins: ["rehype-unwrap-images"],
+  },
+});
 
 export default withMDX(nextConfig);

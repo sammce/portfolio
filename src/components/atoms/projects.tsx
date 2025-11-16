@@ -5,16 +5,19 @@ import Link from "next/link";
 import { ProjectTechBadge } from "./project-tech-badge";
 import { ProjectMetadata } from "@/lib/types";
 import fs from "node:fs";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 
-async function getProjectInfo() {
+export async function getProjectInfo() {
   const projects = fs.readdirSync("./src/projects");
 
-  return await Promise.all(
+  const mdxFiles = await Promise.all(
     projects.map(async (projectMdxFile) => {
       const { metadata } = await import(`@/projects/${projectMdxFile}`);
       return metadata as ProjectMetadata;
     }),
   );
+
+  return mdxFiles.sort((a, b) => a.index - b.index);
 }
 const projects = await getProjectInfo();
 
@@ -27,11 +30,22 @@ export function Projects() {
       <div className="flex flex-col gap-2 font-code">
         {projects.map((project) => (
           <Link key={project.title} href={project.href} scroll>
-            <div className="rounded-xl p-4 border mt-4 flex flex-col gap-3 hover:bg-primary/10 hover:border-primary/30 transition-colors">
-              <h3 className="font-bold font-code text-lg">
+            <div className="rounded-xl p-4 border mt-4 flex flex-col gap-3 hover:bg-primary/10 hover:border-primary/30 transition-colors relative">
+              {project.liveUrl && (
+                <Tooltip disableHoverableContent>
+                  <TooltipTrigger className="absolute top-3 right-3">
+                    <div className="absolute top-0 right-0 size-8 rounded-full bg-destructive/30 animate-pulse"></div>
+                    <div className="absolute top-2 right-2 size-4 rounded-full bg-destructive animate-none"></div>
+                  </TooltipTrigger>
+                  <TooltipContent className="mr-8">
+                    <p>Live Site</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+              <h2 className="font-bold font-code text-lg">
                 {project.title}{" "}
                 <span className="text-muted-foreground">({project.year})</span>
-              </h3>
+              </h2>
               <p className="text-muted-foreground">{project.description}</p>
               <ProjectTechBadge project={project} />
             </div>

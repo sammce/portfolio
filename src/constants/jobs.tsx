@@ -75,12 +75,12 @@ export const jobs: Job[] = [
       },
       {
         name: "Flask Web Application",
-        technologies: ["Python", "Docker", "AWS"],
+        technologies: ["Python", "JavaScript", "Docker", "AWS"],
         responsibilities: [
           {
             description:
               "Shipped a web application written in Flask and HTMX to interact with an internal data service, improving the user experience and performance in comparison to its legacy predecessor. ",
-            technologies: ["Flask", "HTMX"],
+            technologies: ["Flask", "HTMX", "HTML", "TailwindCSS"],
           },
           {
             description:

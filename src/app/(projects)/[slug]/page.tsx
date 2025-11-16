@@ -6,7 +6,6 @@ import { OnThisPage } from "./on-this-page";
 import { LinkableHeading } from "@/components/ui/linkable-heading";
 import { cn, slugify } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 import Link from "next/link";
 import { Link as LinkIcon } from "lucide-react";
 import GithubOriginal from "devicons-react/icons/GithubOriginal";
@@ -14,6 +13,7 @@ import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 import { Technology } from "@/constants/tech-stacks";
 import { Suspense } from "react";
 import { ProjectMetadata } from "@/lib/types";
+import { ExpandableImage } from "@/components/ui/expandable-image";
 
 export default async function Page(props: PageProps<"/[slug]">) {
   const { slug } = await props.params;
@@ -112,34 +112,26 @@ export default async function Page(props: PageProps<"/[slug]">) {
           </Link>
         )}
 
-        <Link
-          href={metadata.liveUrl || ""}
-          className={cn({
-            "cursor-default ": !metadata.liveUrl,
-          })}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {metadata.splash && (
-            <div className="rounded-lg bg-primary/40">
-              <Image
-                src={metadata.splash}
-                alt={`Splash screen for ${metadata.title}`}
-                width={800}
-                height={600}
-                className={cn("rounded-lg border shadow-sm", {
-                  "hover:translate-x-4 hover:shadow-xl hover:-translate-y-4 transition-transform bg-transparent":
-                    metadata.liveUrl,
-                })}
-              />
-            </div>
-          )}
-        </Link>
+        {metadata.splash && (
+          <div className="rounded-lg bg-primary/40">
+            <ExpandableImage
+              src={metadata.splash}
+              alt={`Splash screen for ${metadata.title}`}
+              width={800}
+              height={600}
+              className={cn(
+                "rounded-lg border hover:translate-x-4 hover:shadow-xl hover:-translate-y-4 transition-transform bg-transparent",
+              )}
+            />
+          </div>
+        )}
         <Separator />
         <br />
-        <OnThisPage>
-          <Content />
-        </OnThisPage>
+        <div className="text-foreground">
+          <OnThisPage>
+            <Content />
+          </OnThisPage>
+        </div>
       </div>
     );
   } catch {

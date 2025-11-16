@@ -24,31 +24,37 @@ import TerraformOriginal from "devicons-react/icons/TerraformOriginal";
 import JavascriptOriginal from "devicons-react/icons/JavascriptOriginal";
 import PytorchOriginal from "devicons-react/icons/PytorchOriginal";
 import SassOriginal from "devicons-react/icons/SassOriginal";
+import HTML5Original from "devicons-react/icons/Html5Original";
+import CSS3Original from "devicons-react/icons/Css3Original";
+import GoogleOriginal from "devicons-react/icons/GoogleOriginal";
 
 export const technologies = {
   TypeScript: TypescriptOriginal,
-  JavaScript: JavascriptOriginal,
   Python: PythonOriginal,
   React: ReactOriginal,
   NextJS: NextjsOriginal,
-  Bash: BashOriginal,
+  Django: DjangoPlain,
+  JavaScript: JavascriptOriginal,
   Docker: DockerOriginal,
+  Nginx: NginxOriginal,
+  Linux: LinuxOriginal,
   TailwindCSS: TailwindcssOriginal,
+  HTML: HTML5Original,
+  CSS: CSS3Original,
   SCSS: SassOriginal,
   Lua: LuaOriginal,
   "C-Lang": COriginal,
-  Django: DjangoPlain,
+  Bash: BashOriginal,
   PostgreSQL: PostgresqlOriginal,
   AWS: AmazonwebservicesOriginalWordmark,
-  Linux: LinuxOriginal,
   Flask: FlaskOriginal,
   Pytest: PytestOriginal,
   "Gitlab-CI": GitlabOriginal,
   Pandas: PandasOriginal,
   HTMX: HtmxOriginal,
-  Nginx: NginxOriginal,
   Terraform: TerraformOriginal,
   PyTorch: PytorchOriginal,
+  ["Google OAUTH"]: GoogleOriginal,
 };
 
 export type Technology = keyof typeof technologies;

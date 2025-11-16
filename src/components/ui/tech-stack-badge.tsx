@@ -39,7 +39,7 @@ export function TechStackBadge({
   }, [addTechToFilter, isInFilter, removeTechFromFilter, technology]);
 
   return (
-    <Tooltip>
+    <Tooltip disableHoverableContent>
       <TooltipTrigger
         className={cn(
           "flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg border border-foreground/15 transition-colors",

@@ -5,12 +5,12 @@ import { SidebarLinksListener } from "@/components/layout/sidebar-links-listener
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen">
+    <>
       <About />
       <Projects />
       <WorkExperience />
 
       <SidebarLinksListener />
-    </div>
+    </>
   );
 }

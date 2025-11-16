@@ -1,6 +1,7 @@
 import { Technology } from "@/constants/tech-stacks";
 
 export type ProjectMetadata = {
+  index: number;
   title: string;
   description: string;
   splash?: string;

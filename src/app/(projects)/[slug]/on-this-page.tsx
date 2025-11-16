@@ -23,7 +23,9 @@ export function OnThisPage({ children }: { children: React.ReactNode }) {
     });
 
     setSidebarLinks(links);
-  }, [setSidebarLinks, children]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setSidebarLinks]);
 
   return <>{children}</>;
 }

@@ -5,7 +5,6 @@ import { ProjectMetadata } from "@/lib/types";
 import { Plus } from "lucide-react";
 import { useTechFilter } from "@/hooks/use-tech-filter";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export function ProjectTechBadge({ project }: { project: ProjectMetadata }) {
