@@ -286,7 +286,7 @@ function Sidebar({
           className="group-data-[variant=floating]:border-sidebar-border relative bg-linear-to-b from-sidebar via-footer to-footer  flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
         >
           {children}
-          <div className="bottom-0 left-0 right-0 h-footer bg-footer"></div>
+          <div className="bottom-0 left-0 right-0 h-40 bg-footer"></div>
         </div>
       </div>
     </div>

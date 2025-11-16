@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import type { Technology } from "@/constants/tech-stacks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 

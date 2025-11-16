@@ -1,9 +1,22 @@
 import { LinkableHeading } from "../ui/linkable-heading";
 import { Section } from "../ui/section";
 import { Separator } from "../ui/separator";
-import { projects } from "@/constants/projects";
-import { TechStackBadge } from "../ui/tech-stack-badge";
 import Link from "next/link";
+import { ProjectTechBadge } from "./project-tech-badge";
+import { ProjectMetadata } from "@/lib/types";
+import fs from "node:fs";
+
+async function getProjectInfo() {
+  const projects = fs.readdirSync("./src/projects");
+
+  return await Promise.all(
+    projects.map(async (projectMdxFile) => {
+      const { metadata } = await import(`@/projects/${projectMdxFile}`);
+      return metadata as ProjectMetadata;
+    }),
+  );
+}
+const projects = await getProjectInfo();
 
 export function Projects() {
   return (
@@ -19,17 +32,8 @@ export function Projects() {
                 {project.title}{" "}
                 <span className="text-muted-foreground">({project.year})</span>
               </h3>
-              <p className="text-muted-foreground">{project.blurb}</p>
-              <div
-                className="flex items-center gap-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                {project.technologies.map((tech) => (
-                  <TechStackBadge technology={tech} key={tech} />
-                ))}
-              </div>
+              <p className="text-muted-foreground">{project.description}</p>
+              <ProjectTechBadge project={project} />
             </div>
           </Link>
         ))}

@@ -4,14 +4,15 @@ import { Section } from "../ui/section";
 import { Fragment } from "react";
 import { ExternalLink } from "../ui/external-link";
 import { TechStackBadge } from "../ui/tech-stack-badge";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 import { calculateDuration, jobs, type Job } from "@/constants/jobs";
 
 function JobItem({ job }: { job: Job }) {
   return (
     <Section
       className="flex flex-col gap-2 mb-4 mt-3"
-      id={job.sidebarTitle.toLowerCase()}
+      id={slugify(job.sidebarTitle)}
+      flash
     >
       <div className="flex items-center justify-between gap-1">
         <p className="text-lg">

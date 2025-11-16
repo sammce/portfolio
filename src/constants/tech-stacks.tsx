@@ -1,9 +1,7 @@
 // This monstrosity is the way it is because devicons-react
 // does not tree-shake properly. Without it, bundle size
 // for these icons was ~3MB
-import Html5Original from "devicons-react/icons/Html5Original";
 import ReactOriginal from "devicons-react/icons/ReactOriginal";
-import Css3Original from "devicons-react/icons/Css3Original";
 import TypescriptOriginal from "devicons-react/icons/TypescriptOriginal";
 import COriginal from "devicons-react/icons/COriginal";
 import PythonOriginal from "devicons-react/icons/PythonOriginal";
@@ -12,7 +10,6 @@ import NextjsOriginal from "devicons-react/icons/NextjsOriginal";
 import PostgresqlOriginal from "devicons-react/icons/PostgresqlOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
 import DjangoPlain from "devicons-react/icons/DjangoPlain";
-import DjangorestOriginal from "devicons-react/icons/DjangorestOriginal";
 import AmazonwebservicesOriginalWordmark from "devicons-react/icons/AmazonwebservicesOriginalWordmark";
 import LinuxOriginal from "devicons-react/icons/LinuxOriginal";
 import DockerOriginal from "devicons-react/icons/DockerOriginal";
@@ -26,6 +23,7 @@ import NginxOriginal from "devicons-react/icons/NginxOriginal";
 import TerraformOriginal from "devicons-react/icons/TerraformOriginal";
 import JavascriptOriginal from "devicons-react/icons/JavascriptOriginal";
 import PytorchOriginal from "devicons-react/icons/PytorchOriginal";
+import SassOriginal from "devicons-react/icons/SassOriginal";
 
 export const technologies = {
   TypeScript: TypescriptOriginal,
@@ -35,9 +33,10 @@ export const technologies = {
   NextJS: NextjsOriginal,
   Bash: BashOriginal,
   Docker: DockerOriginal,
+  TailwindCSS: TailwindcssOriginal,
+  SCSS: SassOriginal,
   Lua: LuaOriginal,
   "C-Lang": COriginal,
-  TailwindCSS: TailwindcssOriginal,
   Django: DjangoPlain,
   PostgreSQL: PostgresqlOriginal,
   AWS: AmazonwebservicesOriginalWordmark,

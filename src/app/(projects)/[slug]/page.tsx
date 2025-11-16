@@ -12,18 +12,25 @@ import { Link as LinkIcon } from "lucide-react";
 import GithubOriginal from "devicons-react/icons/GithubOriginal";
 import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 import { Technology } from "@/constants/tech-stacks";
+import { Suspense } from "react";
+import { ProjectMetadata } from "@/lib/types";
 
 export default async function Page(props: PageProps<"/[slug]">) {
   const { slug } = await props.params;
 
   try {
-    const { default: Content, metadata } = await import(
+    const { default: Content, metadata } = (await import(
       `@/projects/${slug}.mdx`
-    );
+    )) as {
+      default: React.ComponentType;
+      metadata: ProjectMetadata;
+    };
 
     return (
       <div className="mb-20 scroll-mt-52 overflow-visible">
-        <BackToHome iconSize={24} className="text-lg" />
+        <Suspense>
+          <BackToHome iconSize={24} className="text-lg" />
+        </Suspense>
         <div className="flex flex-col xl:flex-row justify-between items-center mb-4 xl:mb-0">
           <LinkableHeading
             iconSize={30}
@@ -39,19 +46,37 @@ export default async function Page(props: PageProps<"/[slug]">) {
         </div>
 
         {metadata.tags && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {metadata.tags.map((tag: string) => (
-              <span
-                key={tag}
-                className="text-sm font-bold  border  rounded-lg px-3 py-1.5"
-              >
-                {tag}
-              </span>
-            ))}
-            {metadata.technologies.map((tech: Technology) => (
+          <>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {metadata.tags?.map((tag: string) => (
+                <span
+                  key={tag}
+                  className="text-sm font-bold  border  rounded-lg px-3 py-1.5"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {metadata.coreTechnologies.map((tech: Technology) => (
+            <TechStackBadge
+              technology={tech}
+              key={tech}
+              className="rounded-lg"
+            />
+          ))}
+        </div>
+
+        {metadata.secondaryTechnologies && (
+          <div className="flex flex-wrap gap-2 mb-8">
+            {metadata.secondaryTechnologies?.map((tech: Technology) => (
               <TechStackBadge
                 technology={tech}
                 key={tech}
+                small
                 className="rounded-lg"
               />
             ))}
@@ -117,7 +142,7 @@ export default async function Page(props: PageProps<"/[slug]">) {
         </OnThisPage>
       </div>
     );
-  } catch (e) {
+  } catch {
     notFound();
   }
 }
@@ -130,7 +155,7 @@ export async function generateMetadata(
   try {
     const { metadata } = await import(`@/projects/${slug}.mdx`);
     return { title: metadata.title };
-  } catch (e) {
+  } catch {
     return { title: "Project not found" };
   }
 }

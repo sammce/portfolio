@@ -6,6 +6,7 @@ export type SidebarItem = {
 };
 
 import { jobs } from "@/constants/jobs";
+import { slugify } from "@/lib/utils";
 import { BriefcaseBusiness, Code, User } from "lucide-react";
 
 export const sidebarItems: SidebarItem[] = [
@@ -26,7 +27,7 @@ export const sidebarItems: SidebarItem[] = [
   },
   ...jobs.map((job) => ({
     title: job.sidebarTitle,
-    href: `#${job.sidebarTitle.toLowerCase()}`,
+    href: `#${slugify(job.sidebarTitle)}`,
     icon: job.sidebarIcon,
     isSubheading: true,
   })),

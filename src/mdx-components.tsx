@@ -53,7 +53,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     hr: (props) => <Separator {...props} className="my-8" />,
     a: (props) => <Link {...props} className="text-primary" />,
-    p: (props) => <p className="my-3" {...props} />,
+    p: (props) => <p className="my-3!" {...props} />,
     ...components,
   };
 }

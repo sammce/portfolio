@@ -30,12 +30,13 @@ export function AppSidebar() {
       <SidebarSeparator className=" mt-3 ml-0" />
       <SidebarContent className="px-4">
         <SidebarGroup>
-          <SidebarGroupContent>
+          <SidebarGroupContent className="pb-20">
             <FilterDropdown />
             <p className="text-muted-foreground mt-4">On this page</p>
             <SidebarMenu className="space-y-2 mt-4 relative">
               <SidebarLinks />
             </SidebarMenu>
+            <div className="fixed hidden md:block z-50 w-(--sidebar-width) left-0 bottom-[calc(var(--spacing)*40+1rem)] h-32 bg-linear-to-t from-footer to-transparent"></div>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

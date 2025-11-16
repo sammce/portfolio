@@ -13,6 +13,7 @@ import { MainWrapper } from "@/components/layout/main-wrapper";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { SidebarLinksProvider } from "@/context/sidebar-links";
 import { AsciiArt } from "@/components/atoms/ascii-art";
+import { Suspense } from "react";
 
 const fontSans = Geist({
   variable: "--sammce-font-sans",
@@ -37,16 +38,18 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
             <SidebarLinksProvider>
-              <TechFilterProvider>
-                <AppSidebar />
-                <Header />
-                <MainWrapper>
-                  <SidebarToggle />
-                  {children}
-                </MainWrapper>
-                <Footer />
-                <ScrollToTop />
-              </TechFilterProvider>
+              <Suspense>
+                <TechFilterProvider>
+                  <AppSidebar />
+                  <Header />
+                  <MainWrapper>
+                    <SidebarToggle />
+                    {children}
+                  </MainWrapper>
+                  <Footer />
+                  <ScrollToTop />
+                </TechFilterProvider>
+              </Suspense>
             </SidebarLinksProvider>
           </SidebarProvider>
         </ThemeProvider>
