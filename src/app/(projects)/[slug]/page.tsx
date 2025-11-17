@@ -36,7 +36,7 @@ export default async function Page(props: PageProps<"/[slug]">) {
             iconSize={30}
             href={"#" + slugify(metadata.title)}
             id={slugify(metadata.title)}
-            className="text-5xl mb-4 mt-4 w-full xl:w-auto"
+            className="text-4xl xl:text-5xl mb-4 mt-4 w-full xl:w-auto"
           >
             {metadata.title}
           </LinkableHeading>

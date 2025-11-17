@@ -9,6 +9,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -16,10 +17,18 @@ import { SidebarLinks } from "@/context/sidebar-links";
 import { FilterDropdown } from "./filter-dropdown";
 
 export function AppSidebar() {
+  const { setOpenMobile, isMobile } = useSidebar();
+
+  const handleClose = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
     <Sidebar variant="inset" className="p-0">
       <SidebarHeader className="w-full flex items-center justify-center overflow-hidden mt-1.5">
-        <Link href="/">
+        <Link href="/" onClick={handleClose}>
           <motion.h1 className="text-2xl tracking-tight font-semibold text-primary">
             {"{"}
             <span className="text-foreground">sammce</span>

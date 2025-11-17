@@ -15,19 +15,26 @@ import { AnimatePresence, motion } from "motion/react";
 export function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { showInsetExpanded } = useSidebar();
+  const { showInsetExpanded, isMobile } = useSidebar();
   const { platform } = useUserAgent();
 
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current) return;
 
+    const handleThemeChange = () => {
+      const newTheme = !isDark;
+      setIsDark(newTheme);
+      document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", newTheme ? "dark" : "light");
+    };
+
+    if (isMobile) {
+      handleThemeChange();
+      return;
+    }
+
     await document.startViewTransition(() => {
-      flushSync(() => {
-        const newTheme = !isDark;
-        setIsDark(newTheme);
-        document.documentElement.classList.toggle("dark");
-        localStorage.setItem("theme", newTheme ? "dark" : "light");
-      });
+      flushSync(handleThemeChange);
     }).ready;
 
     const { top, left, width, height } =
@@ -52,7 +59,7 @@ export function DarkModeToggle() {
         pseudoElement: "::view-transition-new(root)",
       },
     );
-  }, [isDark]);
+  }, [isDark, isMobile]);
 
   useEffect(() => {
     const updateTheme = () => {

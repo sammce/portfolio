@@ -14,7 +14,7 @@ function JobItem({ job }: { job: Job }) {
       id={slugify(job.sidebarTitle)}
       flash
     >
-      <div className="flex items-center justify-between gap-1">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-1">
         <p className="text-lg">
           <span className="font-bold">{job.title} @ </span>
           <ExternalLink
@@ -35,14 +35,19 @@ function JobItem({ job }: { job: Job }) {
       {job.projects.map((project) => (
         <Fragment key={project.name}>
           <div
-            className={cn("flex items-center gap-2 mt-4", {
-              "mb-3": project.technologies,
-            })}
+            className={cn(
+              "flex flex-col md:flex-row items-start md:items-center gap-2 mt-4",
+              {
+                "mb-3": project.technologies,
+              },
+            )}
           >
             <p className="font-bold text-base mr-4">{project.name}</p>
-            {project.technologies?.map((tech) => (
-              <TechStackBadge technology={tech} key={tech} small />
-            ))}
+            <div className="flex items-center gap-2 flex-wrap">
+              {project.technologies?.map((tech) => (
+                <TechStackBadge technology={tech} key={tech} small />
+              ))}
+            </div>
           </div>
           <ul className="list-disc pl-4" key={project.name}>
             {project.responsibilities.map((responsibility, index) => (

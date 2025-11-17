@@ -1,5 +1,4 @@
 import type { MDXComponents } from "mdx/types";
-import Link from "next/link";
 import { LinkableHeading } from "./components/ui/linkable-heading";
 import { cn, slugify } from "./lib/utils";
 import { Separator } from "./components/ui/separator";
@@ -46,19 +45,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </div>
     ),
     h1: (props) => (
-      <Heading {...props} iconSize={30} className="text-5xl mb-8" />
+      <Heading {...props} iconSize={30} className="text-4xl xl:text-5xl mb-8" />
     ),
     h2: (props) => (
-      <Heading {...props} iconSize={25} className="text-3xl" as="h2" />
+      <Heading
+        {...props}
+        iconSize={25}
+        className="text-2xl xl:text-3xl"
+        as="h2"
+      />
     ),
     h3: (props) => (
-      <Heading {...props} iconSize={20} className="text-[26px]" as="h3" />
+      <Heading
+        {...props}
+        iconSize={20}
+        className="text-xl xl:text-2xl"
+        as="h3"
+      />
     ),
     h4: (props) => (
       <Heading
         {...props}
         iconSize={15}
-        className="text-[20px] font-bold"
+        className="text-base xl:text-lg font-bold"
         as="h4"
       />
     ),

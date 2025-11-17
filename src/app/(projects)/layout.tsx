@@ -10,7 +10,7 @@ export default function ProjectsLayout({
   return (
     <AnimatePresence>
       <motion.div
-        className="prose dark:prose-invert font-code min-h-[calc(100vh-var(--spacing-footer)-15px)] pt-20 max-w-[800px] mx-auto"
+        className="prose prose-sm xl:prose-base dark:prose-invert font-code min-h-[calc(100vh-var(--spacing-footer)-15px)] pt-20 max-w-[800px] mx-auto"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
