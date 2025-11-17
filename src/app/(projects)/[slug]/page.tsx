@@ -133,7 +133,7 @@ export async function generateMetadata(
 
   try {
     const { metadata } = await import(`@/projects/${slug}.mdx`);
-    return { title: metadata.title + "showcase | Sam McElligott" };
+    return { title: metadata.title + " Showcase | Sam McElligott" };
   } catch {
     return { title: "Project not found" };
   }
