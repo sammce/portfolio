@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -15,27 +15,35 @@ export function ExpandableImage({ className, ...props }: ExpandableImageProps) {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape" || e.key === "Enter") {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   const handleOpen = () => {
-    document.addEventListener("keydown", handleKeyDown);
-    setOpen(!isMobile);
+    if (isMobile) return;
+
+    document.documentElement.classList.add("overflow-y-hidden");
+    setOpen(true);
   };
 
   const handleClose = () => {
-    document.removeEventListener("keydown", handleKeyDown);
+    document.documentElement.classList.remove("overflow-y-hidden");
     setOpen(false);
   };
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape" || e.key === "Enter") {
+      handleClose();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.removeEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, handleKeyDown]);
 
   return (
     <span>
