@@ -58,13 +58,18 @@ export default async function RootLayout({
   );
 }
 
+const title = "Sam McElligott - Portfolio";
+const description =
+  "My name's Sam McElligott. I'm a full-stack web developer who can take your products to the next level. View my projects, work experience and tech stack.";
+const image = "https://www.sammce.dev/card.png";
+
 export const metadata: Metadata = {
-  title: "Sam McElligott - Software Developer",
-  description:
-    "My name's Sam McElligott. I'm a full-stack web developer who can take your products to the next level. View my projects, work experience and tech stack.",
+  title,
+  description,
   keywords: [
     "portfolio",
     "sam",
+    "mcelligott",
     "sammce",
     "sammce.com",
     "sammce.dev",
@@ -87,6 +92,28 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [image],
+  },
+  openGraph: {
+    title,
+    description,
+    url: "https://www.sammce.dev",
+    siteName: "sammce.dev",
+    images: [
+      {
+        url: image,
+        width: 1526,
+        height: 738,
+        alt: title,
+      },
+    ],
+    locale: "en_IE",
+    type: "website",
   },
 };
 
