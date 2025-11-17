@@ -31,12 +31,12 @@ export default async function Page(props: PageProps<"/[slug]">) {
         <Suspense>
           <BackToHome iconSize={24} className="text-lg" />
         </Suspense>
-        <div className="flex flex-col xl:flex-row justify-between items-center mb-4 xl:mb-0">
+        <div className="flex flex-col xl:flex-row justify-between items-center mb-6 mt-4 not-prose">
           <LinkableHeading
             iconSize={30}
             href={"#" + slugify(metadata.title)}
             id={slugify(metadata.title)}
-            className="text-4xl xl:text-5xl mb-4 mt-4 w-full xl:w-auto"
+            className="text-4xl xl:text-5xl w-full xl:w-auto"
           >
             {metadata.title}
           </LinkableHeading>
