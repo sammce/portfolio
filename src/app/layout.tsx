@@ -76,16 +76,15 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: "/icon-light.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
         url: "/icon-dark.png",
         type: "image/png",
         sizes: "32x32",
         media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon-light.png",
-        type: "image/png",
-        sizes: "32x32",
-        media: "(prefers-color-scheme: light)",
       },
     ],
   },
@@ -93,7 +92,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000" },
+    { media: "(prefers-color-scheme: light)", color: "#f2f2f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#131313" },
   ],
 };

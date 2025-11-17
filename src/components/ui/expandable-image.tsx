@@ -46,7 +46,10 @@ export function ExpandableImage({ className, ...props }: ExpandableImageProps) {
   }, [open, handleKeyDown]);
 
   return (
-    <span>
+    <div
+      className="rounded-lg bg-primary/40 group cursor-pointer"
+      onClick={open ? handleClose : handleOpen}
+    >
       {typeof document !== "undefined" &&
         !isMobile &&
         createPortal(
@@ -80,9 +83,11 @@ export function ExpandableImage({ className, ...props }: ExpandableImageProps) {
         )}
       <MotionImage
         {...props}
-        onClick={handleOpen}
-        className={cn("cursor-pointer", className)}
+        className={cn(
+          "rounded-lg border group-hover:translate-x-4 group-hover:shadow-xl group-hover:-translate-y-4 transition-transform bg-transparent",
+          className,
+        )}
       />
-    </span>
+    </div>
   );
 }

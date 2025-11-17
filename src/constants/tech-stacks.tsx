@@ -60,7 +60,7 @@ export const technologies = {
   HTMX: Htmx,
   Terraform: Terraform,
   PyTorch: Pytorch,
-  ["Google OAUTH"]: Google,
+  ["Google OAuth"]: Google,
 };
 
 export type Technology = keyof typeof technologies;

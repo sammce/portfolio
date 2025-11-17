@@ -34,12 +34,12 @@ const Heading = ({
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     img: ({ alt, ...props }: React.ComponentProps<typeof ExpandableImage>) => (
-      <div className="rounded-lg bg-primary/40 mt-6 mb-3">
+      <div className="mt-6 mb-3">
         <ExpandableImage
           alt={alt}
           width={800}
           height={600}
-          className="rounded-lg border hover:translate-x-4 hover:shadow-xl hover:-translate-y-4 transition-transform bg-transparent my-0!"
+          className="my-0!"
           {...props}
         />
       </div>

@@ -24,12 +24,8 @@ export function About() {
         </p>
       </div>
       <p className="text-muted-foreground mt-2">
-        From age 12, I&apos;ve been developing full-stack web applications and
-        developer tooling.
-        <br />
-        <br />
         Currently focusing on infrastructure &amp; deployment automation, CI/CD
-        and ML/AI.
+        and AI/ML.
       </p>
       <Separator className="my-2" />
       <h3 className="font-bold text-base">Dublin, Ireland</h3>
@@ -39,6 +35,7 @@ export function About() {
           tooltipNoun="email"
           href="sammcelligott@outlook.com"
           noPrefix
+          as="p"
         >
           <ExternalLink
             href="mailto:sammcelligott@outlook.com"

@@ -4,15 +4,15 @@ import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 export const metadata = {
     index: 0,
     title: 'DGS Trade Fair',
-    description: "A web application for managing application to, and advertisement of, the annual Drogheda Grammar School Trade Fair.",
+    description: "A web application for streamlining the application to, and advertisement of, the annual Drogheda Grammar School Trade Fair.",
     splash: "/projects/trade-fair/splash.png",
     github: null,
     href: "/dgs-trade-fair",
     liveUrl: "https://dgstradefair.ie",
-    tags: ["Professional", "Full-stack"],
+    tags: ["Web"],
     year: "2021 - Present",
     coreTechnologies: ["TypeScript", "React", "NextJS", "Python", "Django", "Docker"],
-    secondaryTechnologies: ["HTML", "SCSS", "TailwindCSS", "PostgreSQL", "Linux", "Nginx", "Google OAUTH", "Jest", "Cypress", "Github CI"],
+    secondaryTechnologies: ["HTML", "SCSS", "TailwindCSS", "PostgreSQL", "Linux", "Nginx", "Google OAuth", "Jest", "Cypress", "Github CI"],
 }
 
 ## Rationale
@@ -21,17 +21,7 @@ export const metadata = {
 
 The Drogheda Grammar School hosts an annual Trade Fair, where students can apply to take part in a day-long Christmas market selling home made goods.
 
-Managing the application process became cumbersome as the number of applications grew. So I was asked by the organiser to develop a solution to streamline it.
-
-</Section>
-
-## Success Criteria
-
-<Section id="success criteria">
-
-The most important problem to solve was to make the application process as simple as possible for students and staff alike.
-
-On top of this, I wanted to take this opportunity to allow students to better advertise their stalls to other students and people in the community.
+Managing the application process became cumbersome as the number of applications grew. So I was asked by the organiser to develop a solution to modernise it.
 
 </Section>
 
@@ -39,31 +29,14 @@ On top of this, I wanted to take this opportunity to allow students to better ad
 
 <Section id="features">
 
-After 6 months of development (while preparing for my Leaving Cert), the initial version was deployed and included:
-
-- Authentication via email & Google OAUTH, scoped to school email addresses.
+- Authentication via email & Google OAuth, scoped to school email addresses.
 - Automated email verification and password reset.
 - Application submission in accordance with fair guidelines (e.g. stall contract, food safety form)
 - Application status tracking.
 - A dashboard for the organiser to approve/deny applications, with email notifications.
 - A page for each student to advertise their stall & products, with the ability to edit (subject to approval)
 - A pre-order system (no payment), including automated QR code generation for each order, allowing for easy pick-up.
-
-</Section>
-
-### Refined
-
-<Section id="refined">
-
-The initial features served their purpose, but there was a lot of room for improvement. Notably, very few students actually used the pre-order system, so the focus shifted to the management of applications and the fair in general.
-
-Throughout the following years, in collaboration with the organiser, the following features were added/changed:
-
-- The pre-order system was removed.
-- The ability was added for the organiser to send a message to all stallholders.
-- More stall management options were added, including the option to withdraw from the fair.
-- A blog was added for the organiser to post updates about the fair.
-- As my skills developed, the UI was updated to be more user-friendly.
+- Mass messaging to all stallholders via email, and persisted messages via a blog with a bespoke [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) editor.
 
 </Section>
 
@@ -71,9 +44,7 @@ Throughout the following years, in collaboration with the organiser, the followi
 
 <Section id="impact">
 
-The immediate impact of the new application process was evident. Students were able to apply in a matter of minutes, and the organiser had a centralised location for all applications.
-
-The number of applications doubled in that first year (from \~30 to \~60), and the number of applications has continued to grow ever since. This year, there were \~100 applications.
+The number of applications doubled in the first year the site was live (from \~30 to \~60), and the number of applications has continued to grow ever since. This year, there were \~100 applications.
 
 The organiser also reported an exponential decrease in application management effort, allowing them to focus on the fair itself.
 
@@ -87,24 +58,15 @@ The organiser also reported an exponential decrease in application management ef
 
 The application is split into 3 main components:
 
-- <TechStackBadge technology="NextJS" inline /> frontend
-- <TechStackBadge technology="Django" inline /> backend, hosted on a <TechStackBadge technology="Linux" inline /> VPS using <TechStackBadge technology="Docker" inline />
-- 3rd party services - <TechStackBadge technology="Google OAUTH" inline /> & mail provider
+- <TechStackBadge technology="NextJS" inline /> frontend.
+- <TechStackBadge technology="Django" inline /> backend, hosted on a <TechStackBadge technology="Linux" inline /> VPS using <TechStackBadge technology="Docker" inline />.
+- 3rd party services - <TechStackBadge technology="Google OAuth" inline /> & mail provider.
 
 </Section>
 
-### Justification
+### Frontend
 
-<Section id="justification">
-
-We knew the expected traffic of the application would be low, being limited to the Drogheda Grammar School community. This, coupled with the requirement of a low-cost solution, led us to choose a simple and low-maintenence architecture.
-
-
-</Section>
-
-#### NextJS
-
-<Section id="nextjs">
+<Section id="frontend">
 
 NextJS was the perfect candidate for the frontend, as most of the pages are static and can therefore benefit from Next's Incremental Static Regeneration (ISR). I was also familiar with Next, having previously used it to develop personal projects.
 
@@ -121,9 +83,9 @@ The frontend is hosted on [Vercel](https://vercel.com), with automated deploymen
 
 </Section>
 
-#### Django
+### Backend
 
-<Section id="django">
+<Section id="backend">
 
 In a similar fashion to NextJS, Django was the perfect candidate for the backend, as it is a mature and well-tested framework with batteries included. I opted to pair it with Django Rest-Framework, which streamlined validation and database querying.
 
@@ -131,11 +93,11 @@ Docker Compose was used to containerise the application and its dependencies, wi
 
 </Section>
 
-#### 3rd Party
+### 3rd Party
 
 <Section id="3rd party">
 
-The authentication process is made much easier by using Google OAUTH, which requires no additional setup on the part of the user. The mail provider is [Zoho](https://zoho.com), which was chosen primarily for its cost effectiveness
+Offering authentication via Google OAuth vastly reduced the complexity registering new users. The mail provider is [Zoho](https://zoho.com), which was chosen primarily for its cost effectiveness.
 
 </Section>
 
@@ -144,10 +106,10 @@ The authentication process is made much easier by using Google OAUTH, which requ
 
 <Section id="testing strategy">
 
-The application is tested using <TechStackBadge technology="Jest" inline /> for unit/integration tests and <TechStackBadge technology="Cypress" inline /> for e2e tests.
+The web application is tested using <TechStackBadge technology="Jest" inline /> for unit/integration tests and <TechStackBadge technology="Cypress" inline /> for e2e tests. Achieved 80% test coverage.
 
 These are integrated into the repository's CI pipeline, aswell as locally using [Husky](https://typicode.github.io/husky/).
 
-On the backend, I used Django's built in testing framework to test the views and serialisers.
+On the backend, I used Django's built in testing framework with similar CI integration.
 
 </Section>

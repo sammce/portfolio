@@ -75,7 +75,9 @@ export function WorkExperience() {
         id="experience"
         flash
       >
-        <LinkableHeading href="#experience">Experience</LinkableHeading>
+        <LinkableHeading href="#experience" as="h2">
+          Experience
+        </LinkableHeading>
         <Separator className="mb-1" />
       </Section>
       {jobs.map((job, index) => (

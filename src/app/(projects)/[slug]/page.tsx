@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { BackToHome } from "@/components/ui/back-to-home";
 import { OnThisPage } from "./on-this-page";
 import { LinkableHeading } from "@/components/ui/linkable-heading";
-import { cn, slugify } from "@/lib/utils";
+import { slugify } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Link as LinkIcon } from "lucide-react";
@@ -14,6 +14,7 @@ import { Technology } from "@/constants/tech-stacks";
 import { Suspense } from "react";
 import { ProjectMetadata } from "@/lib/types";
 import { ExpandableImage } from "@/components/ui/expandable-image";
+import { ExternalLink } from "@/components/ui/external-link";
 
 export default async function Page(props: PageProps<"/[slug]">) {
   const { slug } = await props.params;
@@ -45,22 +46,42 @@ export default async function Page(props: PageProps<"/[slug]">) {
           </span>
         </div>
 
-        {metadata.tags && (
-          <>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {metadata.tags?.map((tag: string) => (
-                <span
-                  key={tag}
-                  className="text-sm font-bold  border  rounded-lg px-3 py-1.5"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </>
+        <p>{metadata.description}</p>
+
+        {metadata.liveUrl && (
+          <ExternalLink
+            href={metadata.liveUrl}
+            className="flex items-center gap-2 text-primary max-w-fit"
+          >
+            <LinkIcon size={18} />
+            <span className="text-sm font-medium">{metadata.liveUrl}</span>
+          </ExternalLink>
         )}
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        {metadata.github && (
+          <ExternalLink
+            href={metadata.github}
+            className="flex items-center gap-2 text-primary max-w-fit"
+          >
+            <GithubOriginal
+              size={18}
+              className="dark:bg-foreground dark:invert-100 mr-1"
+            />
+            <span className="text-sm font-medium">View source</span>
+          </ExternalLink>
+        )}
+
+        {!metadata.github && (
+          <div className="flex items-center gap-2 mt-4">
+            <GithubOriginal
+              size={18}
+              className="dark:bg-foreground dark:invert-100 mr-1 opacity-20"
+            />
+            <p className="text-muted-foreground my-0!">Closed source</p>
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-2 mt-6 mb-4">
           {metadata.coreTechnologies.map((tech: Technology) => (
             <TechStackBadge
               technology={tech}
@@ -83,47 +104,13 @@ export default async function Page(props: PageProps<"/[slug]">) {
           </div>
         )}
 
-        <p>{metadata.description}</p>
-
-        {metadata.liveUrl && (
-          <Link
-            href={metadata.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 mb-4 text-primary max-w-fit"
-          >
-            <LinkIcon size={18} />
-            <span className="text-sm font-medium">{metadata.liveUrl}</span>
-          </Link>
-        )}
-
-        {metadata.github && (
-          <Link
-            href={metadata.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 mb-4 text-primary max-w-fit"
-          >
-            <GithubOriginal
-              size={18}
-              className="dark:bg-foreground dark:invert-100 mr-1"
-            />
-            <span className="text-sm font-medium">View source</span>
-          </Link>
-        )}
-
         {metadata.splash && (
-          <div className="rounded-lg bg-primary/40">
-            <ExpandableImage
-              src={metadata.splash}
-              alt={`Splash screen for ${metadata.title}`}
-              width={800}
-              height={600}
-              className={cn(
-                "rounded-lg border hover:translate-x-4 hover:shadow-xl hover:-translate-y-4 transition-transform bg-transparent",
-              )}
-            />
-          </div>
+          <ExpandableImage
+            src={metadata.splash}
+            alt={`Splash screen for ${metadata.title}`}
+            width={800}
+            height={600}
+          />
         )}
         <Separator />
         <br />
@@ -146,7 +133,7 @@ export async function generateMetadata(
 
   try {
     const { metadata } = await import(`@/projects/${slug}.mdx`);
-    return { title: metadata.title };
+    return { title: metadata.title + "showcase | Sam McElligott" };
   } catch {
     return { title: "Project not found" };
   }

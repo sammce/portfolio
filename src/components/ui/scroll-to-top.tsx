@@ -43,7 +43,7 @@ export function ScrollToTop() {
       initial={{ opacity: 0, scale: 0.85 }}
       animate={visible ? { opacity: 1, scale: 1 } : {}}
       whileHover={{ scale: 1.1 }}
-      className="fixed bottom-14 right-14 z-10 flex items-center group justify-center active:scale-95 cursor-pointer bg-background-noise/50 backdrop-blur-sm rounded-full"
+      className="fixed bottom-6 md:bottom-14 right-6 md:right-14 z-10 flex items-center group justify-center active:scale-95 cursor-pointer bg-background-noise/50 backdrop-blur-sm rounded-full"
       style={{ width, height }}
     >
       <svg

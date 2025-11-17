@@ -1,5 +1,7 @@
 import { Technology } from "@/constants/tech-stacks";
 
+export type Tag = "Web" | "AI/ML";
+
 export type ProjectMetadata = {
   index: number;
   title: string;
@@ -8,7 +10,7 @@ export type ProjectMetadata = {
   github?: string;
   href: string;
   liveUrl?: string;
-  tags?: string[];
+  tags?: Tag[];
   year: string;
   coreTechnologies: Technology[];
   secondaryTechnologies?: Technology[];

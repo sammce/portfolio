@@ -47,7 +47,7 @@ export function FilterDropdown() {
             aria-expanded={open}
             className="w-full justify-between mt-2 mb-4"
           >
-            Filter technologies
+            Highlight technologies
             <ChevronsUpDown className="opacity-50" />
           </Button>
         </PopoverTrigger>
