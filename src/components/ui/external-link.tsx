@@ -15,7 +15,7 @@ export function ExternalLink({
   return (
     <a
       className={cn(
-        "underline text-primary flex items-center justify-start gap-4 w-max basis-auto underline-offset-2",
+        "underline text-primary inline-flex items-center justify-start gap-4 w-max basis-auto underline-offset-2",
         className,
       )}
       href={href}

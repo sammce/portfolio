@@ -36,7 +36,7 @@ export function AppSidebar() {
             <SidebarMenu className="space-y-2 mt-4 relative">
               <SidebarLinks />
             </SidebarMenu>
-            <div className="fixed hidden md:block z-50 w-(--sidebar-width) left-0 bottom-[calc(var(--spacing)*40+1rem)] h-32 bg-linear-to-t from-footer to-transparent"></div>
+            <div className="fixed hidden md:block z-50 w-(--sidebar-width) left-0 bottom-[calc(var(--spacing)*40+1rem)] h-20 bg-linear-to-t from-footer to-80% to-transparent pointer-events-none"></div>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

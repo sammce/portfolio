@@ -50,11 +50,14 @@ export function About() {
             </span>
           </ExternalLink>
         </LinkableHeading>
-        <ExternalLink href="https://www.linkedin.com/in/sammce/">
+        <ExternalLink
+          href="https://www.linkedin.com/in/sammce/"
+          className="flex"
+        >
           <LinkedinPlain size={18} className="mr-1" />
           LinkedIn
         </ExternalLink>
-        <ExternalLink href="https://github.com/sammce">
+        <ExternalLink href="https://github.com/sammce" className="flex">
           <GithubOriginal
             size={18}
             className="dark:bg-foreground dark:invert-100 mr-1"

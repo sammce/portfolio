@@ -13,7 +13,16 @@ export type TechStackBadgeProps = {
   showFilterTooltip?: boolean;
   small?: boolean;
   className?: string;
+  inline?: boolean;
 };
+
+const shouldInvertDark: Technology[] = [
+  "Github CI",
+  "Bash",
+  "AWS",
+  "Flask",
+  "HTMX",
+];
 
 export function TechStackBadge({
   technology,
@@ -21,6 +30,7 @@ export function TechStackBadge({
   showFilterTooltip = true,
   small = false,
   className,
+  inline = false,
 }: TechStackBadgeProps) {
   const Icon = technologies[technology];
 
@@ -43,6 +53,7 @@ export function TechStackBadge({
       <TooltipTrigger
         className={cn(
           "flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg border border-foreground/15 transition-colors",
+          { "inline-flex align-middle": inline },
           { "hover:bg-primary/15 cursor-pointer": showFilterTooltip },
           {
             "bg-primary/20 dark:bg-primary/20 border-primary shadow-md shadow-primary/15":
@@ -52,7 +63,12 @@ export function TechStackBadge({
         )}
         onClick={handleClick}
       >
-        <Icon size={normalisedIconSize} />
+        <Icon
+          size={normalisedIconSize}
+          className={cn({
+            "dark:invert": shouldInvertDark.includes(technology),
+          })}
+        />
         <span
           className={cn("text-sm tracking-tight font-semibold dark:font-bold", {
             "text-xs": small,

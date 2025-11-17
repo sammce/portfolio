@@ -6,6 +6,7 @@ import { ProjectTechBadge } from "./project-tech-badge";
 import { ProjectMetadata } from "@/lib/types";
 import fs from "node:fs";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
+import { Radio } from "lucide-react";
 
 export async function getProjectInfo() {
   const projects = fs.readdirSync("./src/projects");
@@ -34,8 +35,8 @@ export function Projects() {
               {project.liveUrl && (
                 <Tooltip disableHoverableContent>
                   <TooltipTrigger className="absolute top-3 right-3">
-                    <div className="absolute top-0 right-0 size-8 rounded-full bg-destructive/30 animate-pulse"></div>
-                    <div className="absolute top-2 right-2 size-4 rounded-full bg-destructive animate-none"></div>
+                    <div className="absolute top-0 right-0 size-8 rounded-full bg-destructive/20 animate-pulse"></div>
+                    <Radio className="absolute top-1.5 right-1.5 size-5 rounded-full text-red-800 dark:text-red-400"></Radio>
                   </TooltipTrigger>
                   <TooltipContent className="mr-8">
                     <p>Live Site</p>

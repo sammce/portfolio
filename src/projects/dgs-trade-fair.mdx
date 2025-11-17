@@ -12,7 +12,7 @@ export const metadata = {
     tags: ["Professional", "Full-stack"],
     year: "2021 - Present",
     coreTechnologies: ["TypeScript", "React", "NextJS", "Python", "Django", "Docker"],
-    secondaryTechnologies: ["HTML", "SCSS", "TailwindCSS", "PostgreSQL", "Linux", "Nginx", "Google OAUTH"],
+    secondaryTechnologies: ["HTML", "SCSS", "TailwindCSS", "PostgreSQL", "Linux", "Nginx", "Google OAUTH", "Jest", "Cypress", "Github CI"],
 }
 
 ## Rationale
@@ -23,18 +23,6 @@ The Drogheda Grammar School hosts an annual Trade Fair, where students can apply
 
 Managing the application process became cumbersome as the number of applications grew. So I was asked by the organiser to develop a solution to streamline it.
 
-</Section>
-
-## Role & Scope
-
-<Section id="role & scope">
-
-Once the fair organiser and I came to a mutual understanding of the necessary features, I took on the role of sole developer.
-
-I was responsible for everything, from design & implementation to testing & deployment.
-
-With this in mind, I was also given the freedon to implement any additional features that I thought might positively impact the user experience.
-  
 </Section>
 
 ## Success Criteria
@@ -99,8 +87,67 @@ The organiser also reported an exponential decrease in application management ef
 
 The application is split into 3 main components:
 
-- <span className="flex gap-2 items-center"><TechStackBadge technology="NextJS" /> <span>frontend</span></span>
-- <span className="flex gap-2 items-center"><TechStackBadge technology="Django" /> <span>backend, hosted on a </span><TechStackBadge technology="Linux" /><span> VPS</span></span>
-- <span className="flex gap-2 items-center">3rd party services - <TechStackBadge technology="Google OAUTH" /><span>& mail provider</span></span>
+- <TechStackBadge technology="NextJS" inline /> frontend
+- <TechStackBadge technology="Django" inline /> backend, hosted on a <TechStackBadge technology="Linux" inline /> VPS using <TechStackBadge technology="Docker" inline />
+- 3rd party services - <TechStackBadge technology="Google OAUTH" inline /> & mail provider
+
+</Section>
+
+### Justification
+
+<Section id="justification">
+
+We knew the expected traffic of the application would be low, being limited to the Drogheda Grammar School community. This, coupled with the requirement of a low-cost solution, led us to choose a simple and low-maintenence architecture.
+
+
+</Section>
+
+#### NextJS
+
+<Section id="nextjs">
+
+NextJS was the perfect candidate for the frontend, as most of the pages are static and can therefore benefit from Next's Incremental Static Regeneration (ISR). I was also familiar with Next, having previously used it to develop personal projects.
+
+> Incremental Static Regeneration (ISR) enables you to:
+>
+> - Update static content without rebuilding the entire site
+> - Reduce server load by serving prerendered, static pages for most requests
+> - Ensure proper cache-control headers are automatically added to pages
+> - Handle large amounts of content pages without long next build times
+>
+> \- NextJS documentation
+
+The frontend is hosted on [Vercel](https://vercel.com), with automated deployment to production and staging environments.
+
+</Section>
+
+#### Django
+
+<Section id="django">
+
+In a similar fashion to NextJS, Django was the perfect candidate for the backend, as it is a mature and well-tested framework with batteries included. I opted to pair it with Django Rest-Framework, which streamlined validation and database querying.
+
+Docker Compose was used to containerise the application and its dependencies, with automated deployment to a VPS on Digital Ocean.
+
+</Section>
+
+#### 3rd Party
+
+<Section id="3rd party">
+
+The authentication process is made much easier by using Google OAUTH, which requires no additional setup on the part of the user. The mail provider is [Zoho](https://zoho.com), which was chosen primarily for its cost effectiveness
+
+</Section>
+
+
+## Testing Strategy
+
+<Section id="testing strategy">
+
+The application is tested using <TechStackBadge technology="Jest" inline /> for unit/integration tests and <TechStackBadge technology="Cypress" inline /> for e2e tests.
+
+These are integrated into the repository's CI pipeline, aswell as locally using [Husky](https://typicode.github.io/husky/).
+
+On the backend, I used Django's built in testing framework to test the views and serialisers.
 
 </Section>

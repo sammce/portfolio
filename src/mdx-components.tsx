@@ -1,10 +1,10 @@
 import type { MDXComponents } from "mdx/types";
-import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { LinkableHeading } from "./components/ui/linkable-heading";
 import { cn, slugify } from "./lib/utils";
 import { Separator } from "./components/ui/separator";
 import { ExpandableImage } from "./components/ui/expandable-image";
+import { ExternalLink } from "./components/ui/external-link";
 
 const Heading = ({
   children,
@@ -58,14 +58,30 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <Heading
         {...props}
         iconSize={15}
-        className="text-inherit font-bold"
+        className="text-[20px] font-bold"
         as="h4"
       />
     ),
     hr: (props) => <Separator {...props} className="my-8" />,
-    a: (props) => <Link {...props} className="text-primary" />,
+    a: (props) => (
+      <ExternalLink
+        {...props}
+        className="text-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    ),
     p: (props) => <p className="my-3!" {...props} />,
-    ul: (props) => <ul {...props} style={{ margin: 0 }} />,
+    ul: (props) => (
+      <ul {...props} style={{ margin: 0 }} className="*:marker:text-primary" />
+    ),
+    blockquote: (props) => (
+      <blockquote
+        {...props}
+        className="border-l-4 border-primary py-2 pl-4 my-4 bg-neutral-200/60 dark:bg-accent/30 rounded-lg"
+        style={{ quotes: "none" }}
+      />
+    ),
     ...components,
   };
 }

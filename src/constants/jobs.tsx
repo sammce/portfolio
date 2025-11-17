@@ -64,7 +64,7 @@ export const jobs: Job[] = [
           {
             description:
               "Reduced automated test suite duration from 20 minutes to ~10 seconds by architecting a HTTP caching layer for integration/e2e tests (Pytest). Added cache scoping per request, automatic version-aware cache invalidation and opt-out paths where necessary. Integrated with CI, enabling a quicker feedback loop for developers.",
-            technologies: ["Pytest", "Gitlab-CI"],
+            technologies: ["Pytest", "Gitlab CI"],
           },
           {
             description:
@@ -90,7 +90,7 @@ export const jobs: Job[] = [
           {
             description:
               "Implemented a CI/CD pipeline, automating the deployment on AWS to ensure a consistent and reliable workflow.",
-            technologies: ["Gitlab-CI"],
+            technologies: ["Gitlab CI"],
           },
         ],
       },
