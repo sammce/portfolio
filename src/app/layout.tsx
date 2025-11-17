@@ -59,9 +59,20 @@ export default async function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Sam McElligott",
+  title: "Sam McElligott - Software Developer",
   description:
     "My name's Sam McElligott. I'm a full-stack web developer who can take your products to the next leve. View my projects, work experience and tech stack.",
+  keywords: [
+    "portfolio",
+    "sam",
+    "sammce",
+    "sammce.com",
+    "sammce.dev",
+    "web",
+    "website",
+    "developer",
+    "software",
+  ],
   icons: {
     icon: [
       {
