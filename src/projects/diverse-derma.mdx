@@ -17,7 +17,7 @@ export const metadata = {
 
 <Section id="paper">
 
-You can read our research paper [here](/projects/diverse-derma/diverse-derma-paper.pdf). 
+For a full synopsis of our research, you can read our (unpublished) paper [here](/projects/diverse-derma/diverse-derma-paper.pdf). 
 
 </Section>
 
@@ -41,6 +41,8 @@ Our goal was to decrease this gap in accuracy by utilising transfer learning.
 ![Image of results table](/projects/diverse-derma/results.png)
 
 We chose a general purpose CNN model (ResNet152) as our base model, and fine-tuned it with the DDI dataset. After some data augmentation and balancing, we achieved an effective accuracy of 80% on the test set, which we felt was sufficient confirmation that the performance of these lesion classification models could be improved using a similar method.
+
+For model performance evaluation, we used a 70/20/10 train/test/val split.
 
 80% accuracy is nowhere near enough for clinical use, but with further research efforts, the biases built into these models can be mitigated.
 

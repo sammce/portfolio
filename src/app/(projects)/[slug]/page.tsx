@@ -6,7 +6,7 @@ import { OnThisPage } from "./on-this-page";
 import { LinkableHeading } from "@/components/ui/linkable-heading";
 import { slugify } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { Link as LinkIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Link as LinkIcon } from "lucide-react";
 import GithubOriginal from "devicons-react/icons/GithubOriginal";
 import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 import { Technology } from "@/constants/tech-stacks";
@@ -14,9 +14,71 @@ import { Suspense } from "react";
 import { ProjectMetadata } from "@/lib/types";
 import { ExpandableImage } from "@/components/ui/expandable-image";
 import { ExternalLink } from "@/components/ui/external-link";
+import Link from "next/link";
+import { getProjectInfo } from "@/components/atoms/projects";
+
+const FurtherReading = ({
+  metadata,
+  direction,
+}: {
+  metadata?: ProjectMetadata;
+  direction: "prev" | "next";
+}) => {
+  return (
+    <div className="w-full md:w-1/2">
+      {metadata && (
+        <Link
+          href={metadata.href}
+          className="rounded-xl p-4 border mt-4 flex flex-col gap-2 hover:bg-primary/10 hover:border-primary/30 transition-colors relative no-underline w-full"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              {direction === "next" && (
+                <>
+                  Next <ArrowRight size={20} />
+                </>
+              )}
+              {direction === "prev" && (
+                <>
+                  <ArrowLeft size={20} /> Previous
+                </>
+              )}
+            </span>
+            {metadata.tags && (
+              <div className="flex items-center text-sm gap-2">
+                {metadata.tags.map((tag) => (
+                  <div key={tag} className="px-2 py-1 rounded-md border">
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <h3 className="text-xl not-prose">{metadata.title}</h3>
+          <span className="text-muted-foreground text-sm line-clamp-2 text-ellipsis">
+            {metadata.description}
+          </span>
+        </Link>
+      )}
+    </div>
+  );
+};
+
+const projects = await getProjectInfo();
 
 export default async function Page(props: PageProps<"/[slug]">) {
   const { slug } = await props.params;
+
+  const metadata = projects.find((project) => project.href === "/" + slug);
+
+  if (!metadata) {
+    return notFound();
+  }
+
+  const nextMetadata: ProjectMetadata | undefined =
+    projects[metadata.index + 1];
+  const prevMetadata: ProjectMetadata | undefined =
+    projects[metadata.index - 1];
 
   try {
     const { default: Content, metadata } = (await import(
@@ -117,6 +179,10 @@ export default async function Page(props: PageProps<"/[slug]">) {
           <OnThisPage>
             <Content />
           </OnThisPage>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-8">
+            <FurtherReading metadata={prevMetadata} direction="prev" />
+            <FurtherReading metadata={nextMetadata} direction="next" />
+          </div>
         </div>
       </div>
     );
@@ -141,7 +207,7 @@ export async function generateMetadata(
 export async function generateStaticParams() {
   const projects = fs.readdirSync("./src/projects");
 
-  return projects.map(async (projectMdxFile) => {
+  return projects.map((projectMdxFile) => {
     return { slug: projectMdxFile.replace(".mdx", "") };
   });
 }
