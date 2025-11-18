@@ -12,6 +12,7 @@ import { Separator } from "../ui/separator";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 
 const MotionLink = motion.create(Link);
 
@@ -87,9 +88,15 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
                     </TooltipContent>
                   </Tooltip>
                 )}
-                <h2 className="font-bold font-code text-lg">
-                  {project.title}{" "}
-                  <span className="text-muted-foreground">
+                <ExternalLinkIcon
+                  className={cn("absolute top-[18px] right-[18px]", {
+                    "right-16": project.liveUrl,
+                  })}
+                  size={20}
+                />
+                <h2 className="font-bold font-code text-xl flex items-center gap-4">
+                  <span>{project.title}</span>
+                  <span className="text-muted-foreground text-base">
                     ({project.year})
                   </span>
                 </h2>

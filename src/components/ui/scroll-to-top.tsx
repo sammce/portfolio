@@ -1,8 +1,8 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { useScroll, motion, useTransform, useMotionValue } from "motion/react";
-import { useRef, useState } from "react";
+import { useScroll, motion, useMotionValue } from "motion/react";
+import { useState } from "react";
 
 export function circlePath(cx: number, cy: number, r: number): string {
   if (r <= 0 || !isFinite(r)) {

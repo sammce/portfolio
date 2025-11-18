@@ -18,6 +18,7 @@ export type Job = {
     technologies?: Technology[];
     responsibilities: Responsibility[];
   }[];
+  technologies: Technology[];
   startDate: Date;
   endDate: Date;
   href: string;
@@ -49,13 +50,14 @@ export const jobs: Job[] = [
   {
     title: "Software Engineering Intern",
     sidebarTitle: "SWE Intern",
+    technologies: ["Python", "Docker", "AWS", "Gitlab CI"],
     sidebarIcon: Laptop,
     pageHref: "soft-eng-intern",
     company: "Nuritas",
     projects: [
       {
         name: "Internal Python Library",
-        technologies: ["Python", "Bash"],
+        technologies: ["Python"],
         responsibilities: [
           {
             description:
@@ -103,6 +105,7 @@ export const jobs: Job[] = [
   {
     title: "Teaching Assistant",
     sidebarTitle: "Teaching Assistant",
+    technologies: ["Python", "Linux", "Bash"],
     sidebarIcon: GraduationCap,
     pageHref: "teaching-assistant",
     company: "DCU",

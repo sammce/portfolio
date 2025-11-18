@@ -9,9 +9,10 @@ type SectionProps = {
   children: React.ReactNode;
   className?: string;
   id: string;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-export function Section({ children, className, id }: SectionProps) {
+export function Section({ children, className, id, onClick }: SectionProps) {
   const { setInView } = useSidebarLinks();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-25% 0px -70% 0px" });
@@ -28,6 +29,7 @@ export function Section({ children, className, id }: SectionProps) {
       className={cn("w-full flex flex-col gap-2 scroll-mt-14 mb-8", className)}
       ref={ref}
       id={slugify(id)}
+      onClick={onClick}
     >
       {children}
     </div>

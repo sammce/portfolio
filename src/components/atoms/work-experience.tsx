@@ -1,84 +1,23 @@
+"use client";
+
 import { LinkableHeading } from "../ui/linkable-heading";
 import { Separator } from "../ui/separator";
 import { Section } from "../ui/section";
-import { Fragment } from "react";
-import { ExternalLink } from "../ui/external-link";
-import { TechStackBadge } from "../ui/tech-stack-badge";
-import { cn, slugify } from "@/lib/utils";
-import { calculateDuration, jobs, type Job } from "@/constants/jobs";
-
-function JobItem({ job }: { job: Job }) {
-  return (
-    <Section
-      className="flex flex-col gap-2 mb-4 mt-3"
-      id={slugify(job.sidebarTitle)}
-    >
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-1">
-        <p className="text-lg">
-          <span className="font-bold">{job.title} @ </span>
-          <ExternalLink
-            href={job.href}
-            className="font-normal ml-1 inline-block"
-          >
-            {job.company}
-          </ExternalLink>
-        </p>
-        <p className="text-muted-foreground">
-          {calculateDuration(
-            job.startDate.toDateString(),
-            job.endDate.toDateString(),
-          )}
-        </p>
-      </div>
-      <p className="text-muted-foreground mb-6">{job.location}</p>
-      {job.projects.map((project) => (
-        <Fragment key={project.name}>
-          <div
-            className={cn(
-              "flex flex-col md:flex-row items-start md:items-center gap-2 mt-4",
-              {
-                "mb-3": project.technologies,
-              },
-            )}
-          >
-            <p className="font-bold text-base mr-4">{project.name}</p>
-            <div className="flex items-center gap-2 flex-wrap">
-              {project.technologies?.map((tech) => (
-                <TechStackBadge technology={tech} key={tech} small />
-              ))}
-            </div>
-          </div>
-          <ul className="list-disc pl-4" key={project.name}>
-            {project.responsibilities.map((responsibility, index) => (
-              <li key={index} className="mb-5">
-                <p className="my-2">{responsibility.description}</p>
-                <div className="flex items-center gap-2">
-                  {responsibility.technologies?.map((tech) => (
-                    <TechStackBadge technology={tech} key={tech} small />
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Fragment>
-      ))}
-    </Section>
-  );
-}
+import { jobs } from "@/constants/jobs";
+import { JobItem } from "./job-item";
 
 export function WorkExperience() {
   return (
     <div>
-      <Section className="w-full flex flex-col gap-2 mb-6" id="experience">
+      <Section className="w-full flex flex-col mb-6 gap-0" id="experience">
         <LinkableHeading href="#experience" as="h2">
           Experience
         </LinkableHeading>
-        <Separator className="mb-1" />
+        <Separator className="mb-1 mt-3" />
       </Section>
-      {jobs.map((job, index) => (
+      {jobs.map((job) => (
         <div key={job.title}>
           <JobItem key={job.title} job={job} />
-          {index < jobs.length - 1 && <Separator className="mt-2 mb-8" />}
         </div>
       ))}
     </div>
