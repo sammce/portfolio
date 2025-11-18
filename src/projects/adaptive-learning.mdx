@@ -16,4 +16,55 @@ export const metadata = {
 
 ## Demonstration
 
+<Section id="demonstration">
+
 [Video demonstration (~13 mins)](https://drive.google.com/file/d/1EnnodKTjv23GuvdBItOz3Oogp4KOe-jo/view?usp=sharing) going over the primary features of the platform.
+
+</Section>
+
+## Overview
+
+<Section id="overview">
+
+Adaptive Learning is an online education tool, designed to help educators of students with intellectual disabilites (IDs) by adapting to that student's particular accessibility needs.
+
+As part of our research, we talked with educators at institutions who specialise in caring for those with IDs. We also had learning sessions with their students, to understand the kind of interactions that they found cumbersome, and used that as a basis for our adaptations.
+
+</Section>
+
+## Adaptations
+
+<Section id="adaptations">
+
+Adaptations are changes applied to the interface of the app which, ideally, would improve the learning experience for the learner.
+
+As learners progress through learning material, the system can detect and adapt to:
+
+- The learner's preferred question format (MCQ/free form/True & False).
+- Interaction difficulty, by allowing the learner to control the application with their voice.
+- High error rate or "cognitive load", by dynamically asking questions in the learner's preferred format.
+- Frustration, by enabling immediate corrective feedback to the learner for each question.
+- Fatigue, by dynamically adjusting the amount of questions displayed per section.
+
+</Section>
+
+## Data collection & control
+
+<Section id="data collection & control">
+
+The frontend web-app tracks metrics like click rate and response time, which we used initially for data collection and then to analyse user interaction.
+
+We trained 5 different Hoeffding [Decision] Trees (one for each adaptation) to predict the user's accessibility needs, and use these to apply the relevant interface change(s).
+
+Notably, the system gives educators full control over adaptations, showing what adaptations were applied to each learner, and allowing the educator to roll back adaptations at any point.
+
+</Section>
+
+## Results & Impact
+
+<Section id="results & impact">
+
+In our user testing, we found that the system improved learner engagement by 20% and reduced learner cognitive load by 40%. Users of the platform reported that they found the example questions easier to answer with AI adaptations enabled.
+
+</Section>
+

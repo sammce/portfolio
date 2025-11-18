@@ -30,6 +30,7 @@ import Google from "devicons-react/icons/GoogleOriginal";
 import Cypress from "devicons-react/icons/CypressioOriginal";
 import Jest from "devicons-react/icons/JestPlain";
 import Github from "devicons-react/icons/GithubOriginal";
+import Mui from "devicons-react/icons/MaterialuiOriginal";
 
 export const technologies = {
   TypeScript: Typescript,
@@ -43,20 +44,21 @@ export const technologies = {
   Linux: Linux,
   PostgreSQL: Postgresql,
   TailwindCSS: Tailwindcss,
+  ["Material UI"]: Mui,
   HTML: HTML5,
   CSS: CSS3,
   SCSS: Sass,
+  Pandas: Pandas,
   Lua: Lua,
   Cypress: Cypress,
   Jest: Jest,
-  "C-Lang": C,
+  "C Lang": C,
   Bash: Bash,
   AWS: AmazonwebservicesWordmark,
   Flask: Flask,
   Pytest: Pytest,
   "Gitlab CI": Gitlab,
   "Github CI": Github,
-  Pandas: Pandas,
   HTMX: Htmx,
   Terraform: Terraform,
   PyTorch: Pytorch,

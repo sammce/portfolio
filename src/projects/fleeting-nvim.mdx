@@ -1,0 +1,34 @@
+import { Section } from "@/components/ui/section";
+
+export const metadata = {
+    index: 3,
+    title: "Fleeting.nvim",
+    description: "A Neovim plugin that keeps track of how much of your life you've spent coding in Neovim.",
+    splash: "/projects/fleeting-nvim/splash.png",
+    github: "https://github.com/sammce/fleeting.nvim",
+    href: "/fleeting-nvim",
+    liveUrl: undefined,
+    tags: ["Tool"],
+    year: "2024",
+    coreTechnologies: ["Lua"],
+}
+
+## Why?
+
+<Section id="why?">
+
+Having spent much of my life in front of a text editor, I wanted to quantify the amount of time I had actually spent coding.
+
+After some failed attempts to find an answer to my question, I decided to build my own solution.
+
+</Section>
+
+## How?
+
+<Section id="how?">
+
+The plugin tracks when you enter and leave Neovim, and uses these timestamps to extrapolate how much time you've spent coding.
+
+> Technically speaking, what the plugin tracks is **time spent with neovim open**, which is a good enough heuristic for my use case.
+
+</Section>

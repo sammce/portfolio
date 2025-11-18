@@ -16,7 +16,13 @@ import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 
 const MotionLink = motion.create(Link);
 
-const projectFilterOptions: Tag[] = ["Web", "AI/ML", "Research"];
+const projectFilterOptions: Tag[] = [
+  "Web",
+  "AI/ML",
+  "Research",
+  "Tool",
+  "Live",
+];
 
 export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
   const [projectFilter, setProjectFilter] = useState<Tag | null>(null);
@@ -39,7 +45,7 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
 
   return (
     <Section className="w-full flex flex-col gap-2 mb-12" id="projects">
-      <div className="flex flex-col md:flex-row items-start gap-2 md:items-center justify-between">
+      <div className="flex flex-col lg:flex-row items-start gap-2 lg:items-center justify-between">
         <LinkableHeading href="#projects" as="h2">
           Projects
         </LinkableHeading>

@@ -109,38 +109,40 @@ export default async function Page(props: PageProps<"/[slug]">) {
 
         <p>{metadata.description}</p>
 
-        {metadata.liveUrl && (
-          <ExternalLink
-            href={metadata.liveUrl}
-            className="flex items-center gap-2 text-primary max-w-fit"
-          >
-            <LinkIcon size={18} />
-            <span className="text-sm font-medium">{metadata.liveUrl}</span>
-          </ExternalLink>
-        )}
+        <div className="flex flex-col gap-4">
+          {metadata.liveUrl && (
+            <ExternalLink
+              href={metadata.liveUrl}
+              className="flex items-center gap-2 text-primary max-w-fit"
+            >
+              <LinkIcon size={18} />
+              <span className="text-sm font-medium">{metadata.liveUrl}</span>
+            </ExternalLink>
+          )}
 
-        {metadata.github && (
-          <ExternalLink
-            href={metadata.github}
-            className="flex items-center gap-2 text-primary max-w-fit"
-          >
-            <GithubOriginal
-              size={18}
-              className="dark:bg-foreground dark:invert-100 mr-1"
-            />
-            <span className="text-sm font-medium">View source</span>
-          </ExternalLink>
-        )}
+          {metadata.github && (
+            <ExternalLink
+              href={metadata.github}
+              className="flex items-center gap-2 text-primary max-w-fit"
+            >
+              <GithubOriginal
+                size={18}
+                className="dark:bg-foreground dark:invert-100 mr-1"
+              />
+              <span className="text-sm font-medium">View source</span>
+            </ExternalLink>
+          )}
 
-        {!metadata.github && (
-          <div className="flex items-center gap-2 mt-4">
-            <GithubOriginal
-              size={18}
-              className="dark:bg-foreground dark:invert-100 mr-1 opacity-20"
-            />
-            <p className="text-muted-foreground my-0!">Closed source</p>
-          </div>
-        )}
+          {!metadata.github && (
+            <div className="flex items-center gap-2">
+              <GithubOriginal
+                size={18}
+                className="dark:bg-foreground dark:invert-100 mr-1 opacity-20"
+              />
+              <p className="text-muted-foreground my-0!">Closed source</p>
+            </div>
+          )}
+        </div>
 
         <div className="flex flex-wrap gap-2 mt-6 mb-4">
           {metadata.coreTechnologies.map((tech: Technology) => (
@@ -179,7 +181,7 @@ export default async function Page(props: PageProps<"/[slug]">) {
           <OnThisPage>
             <Content />
           </OnThisPage>
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-8">
+          <div className="flex flex-col md:flex-row justify-between mb-8 gap-8">
             <FurtherReading metadata={prevMetadata} direction="prev" />
             <FurtherReading metadata={nextMetadata} direction="next" />
           </div>

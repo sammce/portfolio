@@ -84,7 +84,7 @@ export function ExpandableImage({ className, ...props }: ExpandableImageProps) {
       <MotionImage
         {...props}
         className={cn(
-          "rounded-lg border group-hover:translate-x-4 group-hover:shadow-xl group-hover:-translate-y-4 transition-transform bg-transparent",
+          "rounded-lg group-hover:translate-x-4 group-hover:shadow-xl group-hover:-translate-y-4 transition-transform",
           className,
         )}
       />
