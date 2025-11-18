@@ -1,0 +1,47 @@
+import { Section } from "@/components/ui/section";
+
+export const metadata = {
+    index: 2,
+    title: "Diverse Derma",
+    description: "A research project focused on the usage of transfer learning to improve the accuracy of skin lesion classification on diverse skin tones. Developed in a team of 5.",
+    github: "https://github.com/sammce/diverse-derma",
+    splash: "/projects/diverse-derma/splash.png",
+    href: "/diverse-derma",
+    liveUrl: undefined,
+    tags: ["Research", "AI/ML"],
+    year: "2025",
+    coreTechnologies: ["Python", "Pandas", "PyTorch"],
+}
+
+## Paper
+
+<Section id="paper">
+
+You can read our research paper [here](/projects/diverse-derma/diverse-derma-paper.pdf). 
+
+</Section>
+
+## Context
+
+<Section id="context">
+
+Reasearchers at Stanford created a [dataset](https://ddi-dataset.github.io/) of professionally labeled dermatological images with an even representation of 6 [Fitzpatrick skin phototypes](https://dermnetnz.org/topics/skin-phototype).
+
+
+As part of their research, Chen et al tested the performance of existing dermatological deep learning models (e.g. DeepDerm and HAM10000), and their performance on non-white skin tones was far worse than on white skin tones.
+
+Our goal was to decrease this gap in accuracy by utilising transfer learning.
+
+</Section>
+
+## Results
+
+<Section id="results">
+
+![Image of results table](/projects/diverse-derma/results.png)
+
+We chose a general purpose CNN model (ResNet152) as our base model, and fine-tuned it with the DDI dataset. After some data augmentation and balancing, we achieved an effective accuracy of 80% on the test set, which we felt was sufficient confirmation that the performance of these lesion classification models could be improved using a similar method.
+
+80% accuracy is nowhere near enough for clinical use, but with further research efforts, the biases built into these models can be mitigated.
+
+</Section>

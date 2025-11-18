@@ -6,7 +6,6 @@ import { OnThisPage } from "./on-this-page";
 import { LinkableHeading } from "@/components/ui/linkable-heading";
 import { slugify } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { Link as LinkIcon } from "lucide-react";
 import GithubOriginal from "devicons-react/icons/GithubOriginal";
 import { TechStackBadge } from "@/components/ui/tech-stack-badge";

@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  // const { scrollY } = useScroll();
+  const { scrollY } = useScroll();
 
   const isBrowser = typeof window !== "undefined";
   const scrollHeight = isBrowser
@@ -16,16 +16,16 @@ export const Footer = () => {
       document.documentElement.clientHeight
     : 0;
 
-  // const translateY = useTransform(
-  //   scrollY,
-  //   [scrollHeight - 300, scrollHeight],
-  //   [100, 0],
-  // );
+  const translateY = useTransform(
+    scrollY,
+    [scrollHeight - 300, scrollHeight],
+    [100, 0],
+  );
 
   return (
     <motion.footer
       initial={{ y: 0 }}
-      // style={{ y: translateY }}
+      style={{ y: translateY }}
       className={cn(
         "bg-footer min-h-footer flex flex-col gap-4 items-center justify-center text-muted-foreground fixed bottom-0 left-0 right-0",
       )}
@@ -38,7 +38,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GithubOriginal className="ml-2 dark:invert" size={28} />
+            <GithubOriginal className="ml-2 dark:invert opacity-60" size={28} />
           </Link>
         </TooltipTrigger>
 

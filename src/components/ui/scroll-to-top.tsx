@@ -1,8 +1,8 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { useScroll, motion, useTransform } from "motion/react";
-import { useState } from "react";
+import { useScroll, motion, useTransform, useMotionValue } from "motion/react";
+import { useRef, useState } from "react";
 
 export function circlePath(cx: number, cy: number, r: number): string {
   if (r <= 0 || !isFinite(r)) {
@@ -31,12 +31,26 @@ const dPath = circlePath(cx, cy, r);
 
 export function ScrollToTop() {
   const { scrollYProgress } = useScroll();
+  const [visible, setVisible] = useState(false);
+  const progress = useMotionValue(0);
 
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  scrollYProgress.on("change", (latest) => {
+    window.requestAnimationFrame(() => {
+      progress.set(latest);
+
+      if (latest > 0.1 && !visible) {
+        setVisible(true);
+      } else if (latest < 0.1 && visible) {
+        setVisible(false);
+      }
+    });
+  });
 
   return (
     <motion.div
-      style={{ opacity, width, height }}
+      style={{ width, height }}
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.85 }}
       whileHover={{ scale: 1.1 }}
       className="fixed bottom-14 right-14 z-10 flex items-center group justify-center active:scale-95 cursor-pointer bg-background-noise/50 backdrop-blur-sm rounded-full"
     >
@@ -50,12 +64,22 @@ export function ScrollToTop() {
       >
         <path
           d={dPath}
+          viewBox={`0 0 ${width} ${height}`}
           width={width}
           height={height}
           fill="none"
           strokeWidth="3"
+          className="pointer-events-none stroke-primary/15"
+        />
+        <motion.path
+          d={dPath}
+          width={width}
+          height={height}
+          fill="none"
+          style={{ pathLength: progress }}
+          strokeWidth="3"
           strokeLinecap="round"
-          className="stroke-primary/50"
+          className="stroke-primary"
         />
       </svg>
       <ArrowUp className="text-primary z-20 group-hover:scale-110 group-active:scale-95 transition-transform" />

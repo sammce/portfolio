@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 const MotionLink = motion.create(Link);
 
-const projectFilterOptions: Tag[] = ["Web", "AI/ML"];
+const projectFilterOptions: Tag[] = ["Web", "AI/ML", "Research"];
 
 export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
   const [projectFilter, setProjectFilter] = useState<Tag | null>(null);

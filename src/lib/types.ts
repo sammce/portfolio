@@ -1,6 +1,6 @@
 import { Technology } from "@/constants/tech-stacks";
 
-export type Tag = "Web" | "AI/ML";
+export type Tag = "Web" | "AI/ML" | "Research";
 
 export type ProjectMetadata = {
   index: number;
