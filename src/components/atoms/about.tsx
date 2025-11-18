@@ -10,7 +10,6 @@ export function About() {
     <Section
       className="items-start justify-center gap-1 mt-20 scroll-mt-32 mb-20"
       id="about"
-      flash
     >
       <h1 className="text-4xl font-bold tracking-tight">Sam McElligott</h1>
       <div className="flex flex-col 2xl:flex-row items-start 2xl:items-center gap-2 2xl:gap-4">

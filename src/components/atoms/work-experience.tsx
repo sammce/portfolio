@@ -12,7 +12,6 @@ function JobItem({ job }: { job: Job }) {
     <Section
       className="flex flex-col gap-2 mb-4 mt-3"
       id={slugify(job.sidebarTitle)}
-      flash
     >
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-1">
         <p className="text-lg">
@@ -70,11 +69,7 @@ function JobItem({ job }: { job: Job }) {
 export function WorkExperience() {
   return (
     <div>
-      <Section
-        className="w-full flex flex-col gap-2 mb-6"
-        id="experience"
-        flash
-      >
+      <Section className="w-full flex flex-col gap-2 mb-6" id="experience">
         <LinkableHeading href="#experience" as="h2">
           Experience
         </LinkableHeading>

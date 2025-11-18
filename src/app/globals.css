@@ -162,21 +162,6 @@
   }
 }
 
-@utility flashable {
-  @apply relative;
-
-  &[data-flash] {
-    & .flashable-target {
-      @apply bg-primary/15 dark:bg-primary/10;
-    }
-  }
-
-  & .flashable-target {
-    @apply absolute -left-4 md:-left-8 -top-5 -right-4 md:-right-8 -bottom-5 -z-10;
-    @apply bg-transparent rounded-xl transition-colors delay-300 duration-300 ease-in-out;
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -37,7 +37,7 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
   }, [didMount]);
 
   return (
-    <Section className="w-full flex flex-col gap-2 mb-12" id="projects" flash>
+    <Section className="w-full flex flex-col gap-2 mb-12" id="projects">
       <div className="flex flex-col md:flex-row items-start gap-2 md:items-center justify-between">
         <LinkableHeading href="#projects" as="h2">
           Projects

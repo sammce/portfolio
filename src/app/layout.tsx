@@ -58,7 +58,7 @@ export default async function RootLayout({
   );
 }
 
-const title = "Sam McElligott - Portfolio";
+const title = "Sam McElligott - Developer Portfolio";
 const description =
   "My name's Sam McElligott. I'm a full-stack web developer who can take your products to the next level. View my projects, work experience and tech stack.";
 const image = "https://www.sammce.dev/card.png";
