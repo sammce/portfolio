@@ -57,7 +57,7 @@ export function MainWrapper({ children }: MainWrapperProps) {
       </AnimatePresence>
       <main
         className={cn(
-          "z-10 h-full w-full relative bg-background noise border-b border-sidebar-border  md:inset-y-2.5 mb-footer md:mt-2.5 px-6",
+          "z-10 h-full w-full relative bg-background noise border-b border-sidebar-border  md:inset-y-2.5 mb-footer md:mt-2.5 px-4",
           { "inset-y-0 rounded-bl-none": showInsetCollapsed },
           { "rounded-bl-xl": showInsetExpanded },
         )}

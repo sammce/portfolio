@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: ["rehype-unwrap-images"],
+    rehypePlugins: ["rehype-unwrap-images", "rehype-pretty-code"],
   },
 });
 

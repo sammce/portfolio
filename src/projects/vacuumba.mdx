@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 
 export const metadata = {
     index: 5,
@@ -15,3 +16,35 @@ export const metadata = {
 }
 
 ## Demonstration
+
+<Section id="demonstration">
+
+<iframe src="https://drive.google.com/file/d/1KAJNbSO9pq33firDRL7BsYwJyOslsSCw/preview" width="800" height="500" allow="autoplay" className="rounded-lg mt-4"></iframe>
+
+</Section>
+
+## Overview
+
+<Section id="overview">
+
+This project was a proof of concept for how one could go about building an automated robot vacuum system.
+
+For the hardware, we were required to use [BBC Micro:bits](https://microbit.org/), which are single chip computers, similar in concept to Raspberry PIs.
+
+> There is actually no 'vacuum' functionality, this project instead focused on the self-driving and communication pipelines.
+
+</Section>
+
+## Components
+
+<Section id="components">
+
+It is comprised of:
+
+- A <TechStackBadge technology="NextJS" inline /> web app for the user to control the vacuum cleaner and view statistics.
+- A <TechStackBadge technology="Django" inline /> backend to store data and handle authentication.
+- A bespoke <TechStackBadge technology="Python" inline /> serial interface for the backend to communicate with the vacuum controller.
+- A wireless communication protocol using radio waves for the controller to communicate with the vacuum.
+- Custom self-driving and collision avoidance algorithms for the vacuum.
+
+</Section>

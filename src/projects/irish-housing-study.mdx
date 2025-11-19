@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { TechStackBadge } from "@/components/ui/tech-stack-badge";
 
 export const metadata = {
     index: 6,
@@ -14,4 +15,24 @@ export const metadata = {
     secondaryTechnologies: ["HTML"],
 }
 
-## Demonstration
+## Introduction
+
+<Section id="introduction">
+
+The idea behind this project was to forecast Irish housing prices post-covid using trends from a dataset of housing prices released by the Irish government. 
+
+The data included prices from all parts of the country, from 1976 to 2019. It takes into account new builds and second hand purchases.
+
+As this was our first foray into data science & analysis, the project uses a simple linear regression algorithm instead of more advanced machine learning models. If I were to do it again I would certainly do it differently, but it taught me a lot about data cleaning and processing.
+
+</Section>
+
+## Results
+
+<Section id="results">
+
+As you might expect, we predicted a massive increase in average prices throughout the country. To showcase our results (and some more information about our process), I built a <TechStackBadge technology="React" inline /> web application. 
+
+You can view it at [https://irishhousingstudy.web.app](https://irishhousingstudy.web.app).
+
+</Section>

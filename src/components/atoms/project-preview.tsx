@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Radio } from "lucide-react";
+import { BookOpen, Globe, Radio, Sparkles, Wrench } from "lucide-react";
 import { ProjectTechBadge } from "./project-tech-badge";
 import { ProjectMetadata, Tag } from "@/lib/types";
 import { AnimatePresence, motion } from "motion/react";
@@ -16,13 +16,13 @@ import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 
 const MotionLink = motion.create(Link);
 
-const projectFilterOptions: Tag[] = [
-  "Web",
-  "AI/ML",
-  "Research",
-  "Tool",
-  "Live",
-];
+const projectFilterOptions: Record<Tag, React.ComponentType> = {
+  Web: Globe,
+  "AI/ML": Sparkles,
+  Research: BookOpen,
+  Tool: Wrench,
+  Live: Radio,
+};
 
 export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
   const [projectFilter, setProjectFilter] = useState<Tag | null>(null);
@@ -45,13 +45,15 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
 
   return (
     <Section className="w-full flex flex-col gap-2 mb-12" id="projects">
-      <div className="flex flex-col lg:flex-row items-start gap-2 lg:items-center justify-between">
+      <div className="flex flex-col 2xl:flex-row items-start gap-2 2xl:items-center justify-between">
         <LinkableHeading href="#projects" as="h2">
           Projects
         </LinkableHeading>
 
-        <div className="flex items-center gap-2">
-          {projectFilterOptions.map((tag) => (
+        <div className="flex items-center gap-2 flex-wrap">
+          {(
+            Object.entries(projectFilterOptions) as [Tag, React.ComponentType][]
+          ).map(([tag, Icon]) => (
             <Button
               key={tag}
               onClick={() => handleProjectFilterChange(tag)}
@@ -61,7 +63,7 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
                   projectFilter === tag,
               })}
             >
-              {tag}
+              <Icon /> {tag}
             </Button>
           ))}
         </div>
@@ -83,24 +85,11 @@ export function ProjectPreviews({ projects }: { projects: ProjectMetadata[] }) {
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="rounded-xl p-4 border mt-4 flex flex-col gap-3 hover:bg-primary/10 hover:border-primary/30 transition-colors relative">
-                {project.liveUrl && (
-                  <Tooltip disableHoverableContent>
-                    <TooltipTrigger className="absolute top-3 right-3">
-                      <div className="absolute top-0 right-0 size-8 rounded-full bg-destructive/20 animate-pulse"></div>
-                      <Radio className="absolute top-1.5 right-1.5 size-5 rounded-full text-red-800 dark:text-red-400"></Radio>
-                    </TooltipTrigger>
-                    <TooltipContent className="mr-8">
-                      <p>Live Site</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
                 <ExternalLinkIcon
-                  className={cn("absolute top-[18px] right-[18px]", {
-                    "right-16": project.liveUrl,
-                  })}
+                  className={cn("absolute top-[18px] right-[18px]")}
                   size={20}
                 />
-                <h2 className="font-bold font-code text-xl flex items-center gap-4">
+                <h2 className="font-bold font-code text-xl flex flex-col items-start lg:flex-row lg:items-center gap-4">
                   <span>{project.title}</span>
                   <span className="text-muted-foreground text-base">
                     ({project.year})

@@ -84,6 +84,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: (props) => (
       <ul {...props} style={{ margin: 0 }} className="*:marker:text-primary" />
     ),
+    code: (props) => (
+      <code
+        {...props}
+        className="inline bg-primary/15 px-1 py-1 rounded-sm before:content-[''] after:content-['']"
+        style={{ quotes: "none" }}
+      />
+    ),
     blockquote: (props) => (
       <blockquote
         {...props}

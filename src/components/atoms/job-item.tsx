@@ -52,7 +52,7 @@ export function JobItem({ job }: { job: Job }) {
             )}
           </span>
         </p>
-        <div className="flex items-center gap-2 pt-3">
+        <div className="flex items-center gap-2 pt-3 flex-wrap">
           {job.technologies?.map((tech) => (
             <TechStackBadge technology={tech} key={tech} />
           ))}

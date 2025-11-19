@@ -4,7 +4,7 @@ export const metadata = {
     index: 4,
     title: "Shell",
     description: "A simple unix shell written in C.",
-    splash: "/projects/housing/splash.png",
+    splash: "/projects/shell/splash.png",
     github: "https://github.com/sammce/shell",
     href: "/shell",
     liveUrl: undefined,
@@ -13,4 +13,31 @@ export const metadata = {
     coreTechnologies: ["C Lang", "Bash", "Linux"],
 }
 
-## Demonstration
+## Introduction
+
+<Section id="introduction">
+
+This project was developed as part of the DCU operating systems module, with the goal of understanding how a shell works at a high level.
+
+The shell supports some basic commands like `cd` and `dir`.
+
+</Section>
+
+## Usage 
+
+<Section id="usage">
+
+- `cd [directory]`: Change the current working directory (CWD) to `directory`. All commands will be executed relative to the CWD.
+  If no directory is given, the CWD is printed.
+- `clr`: Clear the previously printed content from the screen, showing only the shell prompt.
+- `dir [directory]`: List the files/directories in `directory`, or the content of the CWD if no directory is given.
+- `environ`: Print the current environment variables, line by line in a NAME=VALUE format.
+- `echo [...args]`: Print each of the `args`, separated by a space.
+- `help`: Display this message.
+- `pause`: Pauses operation of the shell until 'Enter' is pressed.
+- `quit`: Quits the shell.
+
+All other commands (aka external commands) will be run as child processes. For example, entering `ls` will
+run your system's `ls` command as a child process, and its output will be printed.
+
+</Section>
