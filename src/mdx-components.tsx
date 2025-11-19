@@ -87,7 +87,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code: (props) => (
       <code
         {...props}
-        className="inline bg-primary/15 px-1 py-1 rounded-sm before:content-[''] after:content-['']"
+        className="inline not[data-language]:bg-primary/15 px-1 py-1 rounded-sm before:content-[''] after:content-['']"
+        style={{ quotes: "none" }}
+      />
+    ),
+    pre: (props) => (
+      <pre
+        {...props}
+        className="bg-neutral-200/60 dark:bg-neutral-800/30 rounded-lg text-lg!"
         style={{ quotes: "none" }}
       />
     ),

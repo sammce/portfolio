@@ -1,0 +1,98 @@
+import { Section } from "@/components/ui/section";
+import { TechStackBadge } from "@/components/ui/tech-stack-badge";
+
+export const metadata = {
+    index: 6,
+    title: "Samutil",
+    description: "A collection of python utility packages for testing Python code and logging information to the terminal.",
+    github: "https://github.com/sammce/samutil",
+    href: "/samutil",
+    liveUrl: undefined,
+    tags: ["Tool"],
+    year: "2021",
+    coreTechnologies: ["Python"],
+}
+
+## Testing
+
+<Section id="testing">
+
+This portion of the library lets users write tests for their Python code using inline decorators. It was intended for use in small projects which may otherwise skip testing due to their cumbersome setup and configuration.
+
+Below is an example of how tests can be written using the library:
+
+```python
+# add.py, where the function is defined
+from samutil.testing.decorators import test, case, expect
+from samutil.testing.comparisons import LessThan
+
+@test("Adds 2 integers correctly")
+@case(1, 6)
+@expect(7)
+
+@case(10, b=4)
+@expect(14)
+
+@test("Doesn't return a crazy value")
+@case(10, 20)
+@expect(LessThan(1000))
+def add(a, b):
+  return a + b
+```
+
+The output of the above being:
+
+![Image of output](/projects/samutil/samutil-example.png)
+
+The library is extendable with custom comparisons.
+
+```python
+from samutil.testing.comparisons import EqualTo
+
+class ListEqual(EqualTo):
+    def compare(self, result, expected):
+        if not isinstance(result, (list, tuple)): return False
+
+        for result_val, expected_val in zip(result, expected):
+            if result_val != expected_val: return False
+
+        return True
+```
+
+Is this strictly better than a unit test framework like Pytest? Probably not. But it was a fun project to work on, and taught me a lot about project management and deployment.
+
+</Section>
+
+## Formatting
+
+<Section id="formatting">
+
+The second, arguably more useful set of utilities is the `formatting` module. It provides helper functions for adding colour to console output using ANSI codes.
+
+```python
+from samutil.formatting import Formatter as Fmt
+
+print(fmf.bold(fmt.info("This text is blue and bold!")))
+```
+
+This is something I have used in many of my own projects to make console output more readable.
+
+</Section>
+
+## Key Generation
+
+<Section id="key generation">
+
+The last set of utilities is the `generation` module, which provides helper functions for generating random but secure keys. It makes use of the `crypto` Python module so keys are cryptographically secure.
+
+```python
+from samutil.generation import generate_key
+
+print(generate_key(length=10))
+
+# Output: 7,b*ab4s3}
+```
+
+By default, the generation function strips out quotes to make the keys compatible with `.env` and Bash configuration files.
+
+</Section>
