@@ -37,11 +37,11 @@ export default async function RootLayout({
         <AsciiArt />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
+            <Header />
             <SidebarLinksProvider>
               <Suspense>
                 <TechFilterProvider>
                   <AppSidebar />
-                  <Header />
                   <MainWrapper>
                     <SidebarToggle />
                     {children}

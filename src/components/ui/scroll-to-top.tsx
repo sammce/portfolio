@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { useScroll, motion, useMotionValue } from "motion/react";
+import { useScroll, motion } from "motion/react";
 import { useState } from "react";
 
 export function circlePath(cx: number, cy: number, r: number): string {
@@ -32,12 +32,9 @@ const dPath = circlePath(cx, cy, r);
 export function ScrollToTop() {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);
-  const progress = useMotionValue(0);
 
   scrollYProgress.on("change", (latest) => {
     window.requestAnimationFrame(() => {
-      progress.set(latest);
-
       if (latest > 0.1 && !visible) {
         setVisible(true);
       } else if (latest < 0.1 && visible) {
@@ -70,16 +67,6 @@ export function ScrollToTop() {
           fill="none"
           strokeWidth="3"
           className="pointer-events-none stroke-primary/15"
-        />
-        <motion.path
-          d={dPath}
-          width={width}
-          height={height}
-          fill="none"
-          style={{ pathLength: progress }}
-          strokeWidth="3"
-          strokeLinecap="round"
-          className="stroke-primary"
         />
       </svg>
       <ArrowUp className="text-primary z-20 group-hover:scale-110 group-active:scale-95 transition-transform" />
