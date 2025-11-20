@@ -19,7 +19,7 @@ export function About() {
           className="min-h-5 hidden 2xl:block"
         />
         <p className="text-lg tracking-tight">
-          B.Sc Computer Science @ DCU (Oct. 2026)
+          B.Sc Computer Science @ DCU (May 2026)
         </p>
       </div>
       <p className="text-muted-foreground mt-2">
