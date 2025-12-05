@@ -47,11 +47,11 @@ export default async function RootLayout({
                     {children}
                   </MainWrapper>
                   <Footer />
-                  <ScrollToTop />
                 </TechFilterProvider>
               </Suspense>
             </SidebarLinksProvider>
           </SidebarProvider>
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { BookOpen, Globe, Radio, Sparkles, Wrench } from "lucide-react";
 import { ProjectTechBadge } from "./project-tech-badge";
 import { ProjectMetadata, Tag } from "@/lib/types";

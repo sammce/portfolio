@@ -8,26 +8,26 @@ import { ExternalLink } from "../ui/external-link";
 export function About() {
   return (
     <Section
-      className="items-start justify-center gap-1 mt-20 scroll-mt-32 mb-20"
+      className="mt-20 mb-20 scroll-mt-32 items-start justify-center gap-1"
       id="about"
     >
       <h1 className="text-4xl font-bold tracking-tight">Sam McElligott</h1>
-      <div className="flex flex-col 2xl:flex-row items-start 2xl:items-center gap-2 2xl:gap-4">
+      <div className="flex flex-col items-start gap-2 2xl:flex-row 2xl:items-center 2xl:gap-4">
         <p className="text-lg tracking-tight">Software Engineer</p>
         <Separator
           orientation="vertical"
-          className="min-h-5 hidden 2xl:block"
+          className="hidden min-h-5 2xl:block"
         />
         <p className="text-lg tracking-tight">
           B.Sc Computer Science @ DCU (May 2026)
         </p>
       </div>
-      <p className="text-muted-foreground mt-2">
+      <p className="mt-2 text-muted-foreground">
         Currently focusing on infrastructure &amp; deployment automation, CI/CD
         and AI/ML.
       </p>
       <Separator className="my-2" />
-      <h3 className="font-bold text-base">Dublin, Ireland</h3>
+      <h3 className="text-base font-bold">Dublin, Ireland</h3>
       <div className="space-y-2">
         <LinkableHeading
           iconSize={16}
@@ -40,8 +40,8 @@ export function About() {
             href="mailto:sammcelligott@outlook.com"
             showExternalLink={false}
           >
-            <Mail size={18} className="mt-0.5 mr-1 text-foreground font-code" />
-            <span className="text-sm font-normal font-code">
+            <Mail size={18} className="mt-0.5 mr-1 font-code text-foreground" />
+            <span className="font-code text-sm font-normal">
               sammcelligott@outlook.com
             </span>
           </ExternalLink>
@@ -56,7 +56,7 @@ export function About() {
         <ExternalLink href="https://github.com/sammce" className="flex">
           <GithubOriginal
             size={18}
-            className="dark:bg-foreground dark:invert-100 mr-1"
+            className="mr-1 dark:bg-foreground dark:invert-100"
           />
           GitHub
         </ExternalLink>
